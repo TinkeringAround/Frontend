@@ -8,14 +8,13 @@ export default (props: Props) => {
   const { children } = props
 
   return (
-    <div className="body">
+    <div className="footer">
+      <h6>"Made with Love. Establieshed 2019."</h6>
       {children}
       <style jsx>{`
-        .body {
-          margin: 0;
-          padding: 0;
-          height: 100vh;
+        .footer {
           width: 100vw;
+          height: 10%;
         }
       `}</style>
     </div>
