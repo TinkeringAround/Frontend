@@ -4,8 +4,8 @@ import Container from '../atoms/Container'
 // Layout
 import Meta from '../components/Meta'
 import Header from '../components/Header'
-import Content from './Content'
 import Footer from '../components/Footer'
+import Content from '../components/Content'
 
 //--------------------------------------------------------------------------//
 export interface Props {
@@ -24,10 +24,16 @@ export default (props: Props) => {
         height="100vh"
         margin="0"
         padding="0"
-        style={{ flexDirection: 'column' }}
+        style={{
+          flexDirection: 'column'
+        }}
       >
-        <Header height="100px" backgroundColor="#FAB" />
-        <Content>{children}</Content>
+        <Header height="100px" backgroundColor="#7db9e8" style={{ position: 'sticky', top: '0' }} />
+        <Content
+          style={{ background: 'linear-gradient(to bottom, #7db9e8 0%,#fcfcfc 54%,#fcfcfc 100%);' }}
+        >
+          {children}
+        </Content>
         <Footer />
       </Container>
     </>

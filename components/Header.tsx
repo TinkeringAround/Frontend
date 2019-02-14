@@ -19,7 +19,7 @@ export default (props: Props) => {
   }
 
   return (
-    <Flex style={Styles}>
+    <Flex justifyContent="flex-end" style={Styles}>
       <h1>PuzzleYOU</h1>
       <style jsx>{`
         h1 {
