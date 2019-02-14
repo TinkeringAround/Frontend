@@ -1,0 +1,25 @@
+{
+  "name": "next-playground",
+  "version": "1.0.0",
+  "description": "Next-Styledjsx-React-Playground",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "Thomas Maier",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-typescript": "^1.1.1",
+    "next": "^8.0.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-test-renderer": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.3",
+    "jest": "^24.1.0"
+  }
+}
