@@ -1,9 +1,11 @@
+// Atoms
+import Container from '../atoms/Container'
+
 // Layout
-import Meta from './Meta'
-import Body from './Body'
-import Header from './Header'
+import Meta from '../components/Meta'
+import Header from '../components/Header'
 import Content from './Content'
-import Footer from './Footer'
+import Footer from '../components/Footer'
 
 //--------------------------------------------------------------------------//
 export interface Props {
@@ -17,11 +19,17 @@ export default (props: Props) => {
   return (
     <>
       <Meta />
-      <Body>
-        <Header />
+      <Container
+        width="100vw"
+        height="100vh"
+        margin="0"
+        padding="0"
+        style={{ flexDirection: 'column' }}
+      >
+        <Header height="100px" backgroundColor="#FAB" />
         <Content>{children}</Content>
         <Footer />
-      </Body>
+      </Container>
     </>
   )
 }

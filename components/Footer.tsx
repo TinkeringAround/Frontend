@@ -1,3 +1,6 @@
+// Atoms
+import Flex from '../atoms/Flex'
+
 //--------------------------------------------------------------------------//
 export interface Props {
   children?: any
@@ -8,15 +11,14 @@ export default (props: Props) => {
   const { children } = props
 
   return (
-    <div className="footer">
+    <Flex width="100vw" height="100px" justifyContent="center" backgroundColor="lightgrey">
       <h6>"Made with Love. Establieshed 2019."</h6>
       {children}
       <style jsx>{`
-        .footer {
-          width: 100vw;
-          height: 10%;
+        h6 {
+          font-size: 1.2rem;
         }
       `}</style>
-    </div>
+    </Flex>
   )
 }
