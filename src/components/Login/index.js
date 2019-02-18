@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+
+// Context
+import AppContext from '../../context/app-context'
 
 // Theme
 import Theme from '../../theme'
@@ -9,19 +12,41 @@ import Container from '../atoms/Container'
 import Text from '../atoms/Text'
 import Box from '../atoms/Box'
 import Button from '../atoms/Button'
+import Textfield from '../atoms/Textfield'
+import Image from '../atoms/Image'
+
+// Image
+import elefant from '../../assets/images/Character.png'
 
 //--------------------------------------------------------------------------//
-export default props => {
+export default () => {
+  const appContext = useContext(AppContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const updateEmail = event => {
+    setEmail(event.target.value)
+  }
+
+  const updatePassword = event => {
+    setPassword(event.target.value)
+  }
+
   return (
     <React.Fragment>
-      <Container width="100vw" height="100vh">
+      <Container width="100vw" height="100%">
         <Container width="100%" height="55%" position="absolute" left="0" top="0">
-          <Text>Willkommen bei</Text>
+          <Flex flexDirection="column">
+            <Text fontSize={Theme.fontSizes.xlarge} margin="0 auto 20px auto">
+              Willkommen bei <strong>Pampi's Puzzle!</strong>
+            </Text>
+            <Image src={elefant} width="70%" height="70%" />
+          </Flex>
         </Container>
 
         <Container width="100%" height="45%" position="absolute" left="0" bottom="0">
           <Flex justifyContent="flex-start" flexDirection="column">
-            <Text fontSize={Theme.fontSizes.xlarge} margin="0 auto 8px auto">
+            <Text fontSize={Theme.fontSizes.xlarge} margin="10px auto 8px auto">
               Infos eingeben
             </Text>
             <Box
@@ -32,13 +57,18 @@ export default props => {
               margin="0 auto 60px "
             >
               <Flex flexDirection="column" justifyContent="space-evenly" alignItems="strech">
-                <Text
-                  color={Theme.textColors.lightGrey}
+                <Textfield
+                  name="email"
+                  type="email"
+                  color={Theme.textColors.darkGrey}
                   fontSize={Theme.fontSizes.large}
-                  margin="auto 0 auto 30px"
-                >
-                  Benutzername
-                </Text>
+                  textAlign="start"
+                  width="80%"
+                  margin="auto"
+                  placeholder="Benutzername"
+                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                  onChange={updateEmail}
+                />
 
                 <Box
                   width="100%"
@@ -47,15 +77,21 @@ export default props => {
                   margin="0"
                 />
 
-                <Text
-                  color={Theme.textColors.lightGrey}
+                <Textfield
+                  name="password"
+                  type="password"
+                  color={Theme.textColors.darkGrey}
                   fontSize={Theme.fontSizes.large}
-                  margin="auto 0 auto 30px"
-                >
-                  Password
-                </Text>
+                  textAlign="start"
+                  width="80%"
+                  margin="auto"
+                  placeholder="Password"
+                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                  onChange={updatePassword}
+                />
               </Flex>
             </Box>
+
             <Button
               width="80%"
               height="45px"
@@ -64,7 +100,7 @@ export default props => {
               borderRadius="12px"
               boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
               fontSize={Theme.fontSizes.xxlarge}
-              onClick={() => {}}
+              onClick={() => appContext.login(email, password)}
             >
               Anmelden
             </Button>

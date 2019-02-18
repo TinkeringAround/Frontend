@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import axios from 'axios'
 
 // Context
 import AppContext from './context/app-context'
@@ -16,7 +17,18 @@ export default () => {
   const [authenticated, setAuthenticated] = React.useState(false)
 
   const login = (email, password) => {
-    if (email && password) setAuthenticated(true)
+    axios
+      .post('http://157.230.76.219:30000/api/v1/users/login', {
+        email: email,
+        password: password
+      })
+      .then(function(response) {
+        setAuthenticated(true)
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
   }
 
   const logout = () => {
