@@ -12,5 +12,8 @@ const Flex = styled.div`
 
   margin-right: auto;
   margin-left: auto;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 `
 export default Flex

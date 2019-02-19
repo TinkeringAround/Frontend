@@ -10,8 +10,9 @@ const Text = styled.text`
   margin: ${props => (props.margin == null ? 'auto' : props.margin)};
   padding: ${props => (props.padding == null ? '0' : props.padding)};
 
-  font-size: ${props => (props.fontSize == null ? props.theme.fontSizes.normal : props.fontSize)};
+  font-size: ${props => (props.fontSize == null ? props.theme.fontSizes.default : props.fontSize)};
   letter-spacing: ${props =>
     props.letterSpacing == null ? props.theme.letterSpacing : props.letterSpacing};
+  text-align: ${props => (props.textAlign == null ? 'left' : props.textAlign)};
 `
 export default Text

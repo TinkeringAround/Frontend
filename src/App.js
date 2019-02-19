@@ -11,6 +11,7 @@ import Theme from './theme'
 
 // Components
 import Login from './components/Login'
+import Home from './components/Home'
 
 //-------------------------------------------------------------------------//
 export default () => {
@@ -36,8 +37,10 @@ export default () => {
     setAuthenticated(false)
   }
 
-  const routes = authenticated ? (
-    <React.Fragment />
+  const routes = true ? (
+    <Switch>
+      <Route to="/home" component={Home} />
+    </Switch>
   ) : (
     <Switch>
       <Route exact to="/" component={Login} />

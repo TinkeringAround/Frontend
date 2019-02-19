@@ -34,10 +34,14 @@ export default () => {
 
   return (
     <React.Fragment>
-      <Container width="100vw" height="100%">
+      <Container width="100vw" height="100%" backgroundColor={Theme.colors.white}>
         <Container width="100%" height="55%" position="absolute" left="0" top="0">
           <Flex flexDirection="column">
-            <Text fontSize={Theme.fontSizes.xlarge} margin="0 auto 20px auto">
+            <Text
+              fontSize={Theme.fontSizes.xlarge}
+              margin="0 auto 20px auto"
+              color={Theme.textColors.darkGrey}
+            >
               Willkommen bei <strong>Pampi's Puzzle!</strong>
             </Text>
             <Image src={elefant} width="70%" height="70%" />
@@ -46,7 +50,11 @@ export default () => {
 
         <Container width="100%" height="45%" position="absolute" left="0" bottom="0">
           <Flex justifyContent="flex-start" flexDirection="column">
-            <Text fontSize={Theme.fontSizes.xlarge} margin="10px auto 8px auto">
+            <Text
+              fontSize={Theme.fontSizes.xlarge}
+              margin="10px auto 8px auto"
+              color={Theme.textColors.darkGrey}
+            >
               Infos eingeben
             </Text>
             <Box
@@ -95,10 +103,11 @@ export default () => {
             <Button
               width="80%"
               height="45px"
-              color={Theme.textColors.darkGrey}
+              color={Theme.textColors.white}
+              backgroundColor={Theme.colors.lightBlue}
               margin="0 auto"
               borderRadius="12px"
-              boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
+              boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
               fontSize={Theme.fontSizes.xxlarge}
               onClick={() => appContext.login(email, password)}
             >
