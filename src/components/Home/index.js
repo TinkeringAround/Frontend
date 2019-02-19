@@ -61,7 +61,6 @@ export default () => {
       <Container height="80%" position="absolute" left="0" bottom="0">
         <Flex width="90%" flexDirection="column" justifyContent="space-around" alignItems="center">
           <Puzzle />
-          <Puzzle />
         </Flex>
       </Container>
     </React.Fragment>
