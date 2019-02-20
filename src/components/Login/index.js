@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import axios from 'axios'
 
 // Context
 import AppContext from '../../context/app-context'
@@ -30,6 +31,21 @@ export default () => {
 
   const updatePassword = event => {
     setPassword(event.target.value)
+  }
+
+  const login = () => {
+    axios
+      .post('http://157.230.76.219:30000/api/v1/users/login', {
+        email: email,
+        password: password
+      })
+      .then(function(response) {
+        appContext.login(response.data.data)
+        console.log(response.data.data)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
   }
 
   return (
@@ -109,7 +125,7 @@ export default () => {
               borderRadius="12px"
               boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
               fontSize={Theme.fontSizes.xxlarge}
-              onClick={() => appContext.login(email, password)}
+              onClick={login}
             >
               Anmelden
             </Button>

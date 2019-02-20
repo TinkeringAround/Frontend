@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Cookie from 'react-cookies'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import axios from 'axios'
 
 // Context
 import AppContext from './context/app-context'
@@ -15,66 +14,52 @@ import Login from './components/Login'
 import Home from './components/Home'
 
 //-------------------------------------------------------------------------//
-export default () => {
+const App = props => {
   const [authenticated, setAuthenticated] = useState(false)
   const [userData, setUserData] = useState(null)
 
+  // Initial Setup
   if (!authenticated && userData == null) {
     const data = Cookie.load('userData')
     if (data != null && data.hasOwnProperty('userID')) {
       setUserData(data)
       setAuthenticated(true)
+      props.history.push('/home')
     }
   }
 
-  const login = (email, password) => {
-    axios
-      .post('http://157.230.76.219:30000/api/v1/users/login', {
-        email: email,
-        password: password
-      })
-      .then(function(response) {
-        Cookie.save('userData', response.data.data, { path: '/' })
-        setUserData(response.data.data)
-        setAuthenticated(true)
-        console.log(response.data.data)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
+  const login = data => {
+    Cookie.save('userData', data, { path: '/' })
+    setUserData(data)
+    setAuthenticated(true)
+    props.history.push('/home')
   }
 
   const logout = () => {
-    // save everything
+    // save everything via API
     Cookie.remove('userData')
     setUserData(null)
     setAuthenticated(false)
+    props.history.push('/login')
   }
-
-  useEffect(() => {
-    console.log('Updated.')
-  })
 
   const routes = authenticated ? (
     <Switch>
-      <Route to="/" component={Home} />
-      <Redirect to="/" />
+      <Route to="/home" component={Home} />
+      <Redirect to="/home" />
     </Switch>
   ) : (
     <Switch>
-      <Route to="/" component={Login} />
-      <Redirect to="/" />
+      <Route to="/login" component={Login} />
+      <Redirect to="/login" />
     </Switch>
   )
-
-  console.log('Authenticated: ', authenticated)
-  console.log('UserData: ', userData)
 
   return (
     <AppContext.Provider
       value={{
-        login: (email, password) => {
-          login(email, password)
+        login: data => {
+          login(data)
         },
         logout: () => {
           logout()
@@ -82,9 +67,9 @@ export default () => {
         user: userData
       }}
     >
-      <ThemeProvider theme={Theme}>
-        <Router>{routes}</Router>
-      </ThemeProvider>
+      <ThemeProvider theme={Theme}>{routes}</ThemeProvider>
     </AppContext.Provider>
   )
 }
+
+export default withRouter(App)

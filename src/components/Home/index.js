@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 // Context
-import AppContext from '../../context/app-context'
+//import AppContext from '../../context/app-context'
 
 // Theme
 import Theme from '../../theme'
@@ -97,7 +97,7 @@ const userData = {
 
 //--------------------------------------------------------------------------//
 export default () => {
-  const appContext = useContext(AppContext)
+  //const appContext = useContext(AppContext)
 
   let finished = true
   const today = new Date()
