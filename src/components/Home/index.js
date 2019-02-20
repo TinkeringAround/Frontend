@@ -28,7 +28,6 @@ export default () => {
           <Puzzle />
           <Puzzle />
           <Puzzle />
-          <Puzzle />
         </Flex>
       </Container>
     </React.Fragment>

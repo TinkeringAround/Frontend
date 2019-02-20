@@ -37,7 +37,7 @@ export default () => {
     setAuthenticated(false)
   }
 
-  const routes = true ? (
+  const routes = authenticated ? (
     <Switch>
       <Route to="/home" component={Home} />
     </Switch>
