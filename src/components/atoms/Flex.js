@@ -11,17 +11,23 @@ const Flex = styled.div`
   height: ${props => (props.height == null ? '100%' : props.height)};
 
   margin: ${props => (props.margin == null ? '0' : props.margin)};
-  margin-top: ${props => (props.marginTop == null ? '0' : props.marginTop)};
-  margin-right: ${props => (props.marginRight == null ? 'auto' : props.marginRight)};
-  margin-bottom: ${props => (props.marginBottom == null ? '0' : props.marginBottom)};
-  margin-left: ${props => (props.marginLeft == null ? 'auto' : props.marginLeft)};
-
+  ${props =>
+    props.margin == null
+      ? `margin-top: ${props.marginTop == null ? 'auto' : props.marginTop};
+  margin-right: ${props.marginRight == null ? 'auto' : props.marginRight};
+  margin-bottom: ${props.marginBottom == null ? 'auto' : props.marginBottom};
+  margin-left: ${props.marginLeft == null ? 'auto' : props.marginLeft};`
+      : ''}
+  
   padding: ${props => (props.padding == null ? '0' : props.padding)};
-  padding-top: ${props => (props.paddingTop == null ? '0' : props.paddingTop)};
-  padding-right: ${props => (props.paddingRight == null ? '0' : props.paddingRight)};
-  padding-bottom: ${props => (props.paddingBottom == null ? '0' : props.paddingBottom)};
-  padding-left: ${props => (props.paddingLeft == null ? '0' : props.paddingLeft)};
-
+  ${props =>
+    props.padding == null
+      ? `padding-top: ${props.paddingTop == null ? 'auto' : props.paddingTop};
+  padding-right: ${props.paddingRight == null ? 'auto' : props.paddingRight};
+  padding-bottom: ${props.paddingBottom == null ? 'auto' : props.paddingBottom};
+  padding-left: ${props.paddingLeft == null ? 'auto' : props.paddingLeft};`
+      : ''}
+      
   overflow-y: ${props => (props.overflowY == null ? 'auto' : props.overflowY)};
   overflow-x: ${props => (props.overflowX == null ? 'auto' : props.overflowX)};
 `

@@ -34,7 +34,56 @@ const Paths = {
   )
 }
 
+const getSVG = type => {
+  let viewBox,
+    path = null
+
+  switch (type) {
+    case 'picture': {
+      viewBox = ViewBoxes.Picture
+      path = Paths.Picture
+      break
+    }
+    case 'audio': {
+      viewBox = ViewBoxes.Audio
+      path = Paths.Audio
+      break
+    }
+    case 'matrix': {
+      viewBox = ViewBoxes.Matrix
+      path = Paths.Matrix
+      break
+    }
+    case 'scheibe': {
+      viewBox = ViewBoxes.Scheibe
+      path = Paths.Scheibe
+      break
+    }
+    case 'suche': {
+      viewBox = ViewBoxes.Suche
+      path = Paths.Suche
+      break
+    }
+    case 'text': {
+      viewBox = ViewBoxes.Text
+      path = Paths.Text
+      break
+    }
+    default: {
+      viewBox = ''
+      path = ''
+      break
+    }
+  }
+
+  return {
+    viewBox: viewBox,
+    path: path
+  }
+}
+
 export default {
   ViewBoxes,
-  Paths
+  Paths,
+  getSVG
 }

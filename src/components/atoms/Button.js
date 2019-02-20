@@ -6,16 +6,22 @@ const Button = styled.button`
   height: ${props => (props.height == null ? 'auto' : props.height)};
 
   margin: ${props => (props.margin == null ? '0' : props.margin)};
-  margin-top: ${props => (props.marginTop == null ? '0' : props.marginTop)};
-  margin-right: ${props => (props.marginRight == null ? '0' : props.marginRight)};
-  margin-bottom: ${props => (props.marginBottom == null ? '0' : props.marginBottom)};
-  margin-left: ${props => (props.marginLeft == null ? '0' : props.marginLeft)};
+  ${props =>
+    props.margin == null
+      ? `margin-top: ${props.marginTop == null ? 'auto' : props.marginTop};
+  margin-right: ${props.marginRight == null ? 'auto' : props.marginRight};
+  margin-bottom: ${props.marginBottom == null ? 'auto' : props.marginBottom};
+  margin-left: ${props.marginLeft == null ? 'auto' : props.marginLeft};`
+      : ''}
 
   padding: ${props => (props.padding == null ? '0' : props.padding)};
-  padding-top: ${props => (props.paddingTop == null ? '0' : props.paddingTop)};
-  padding-right: ${props => (props.paddingRight == null ? '0' : props.paddingRight)};
-  padding-bottom: ${props => (props.paddingBottom == null ? '0' : props.paddingBottom)};
-  padding-left: ${props => (props.paddingLeft == null ? '0' : props.paddingLeft)};
+  ${props =>
+    props.padding == null
+      ? `padding-top: ${props.paddingTop == null ? 'auto' : props.paddingTop};
+  padding-right: ${props.paddingRight == null ? 'auto' : props.paddingRight};
+  padding-bottom: ${props.paddingBottom == null ? 'auto' : props.paddingBottom};
+  padding-left: ${props.paddingLeft == null ? 'auto' : props.paddingLeft};`
+      : ''}
 
   color: ${props => (props.color == null ? props.theme.textColors.whiteText : props.color)};
 
@@ -29,10 +35,20 @@ const Button = styled.button`
     props.backgroundColor == null ? props.theme.colors.white : props.backgroundColor};
 
   border: ${props => (props.border == null ? 'none' : props.border)};
+  ${props =>
+    props.border == null
+      ? `border-top: ${props.borderTop == null ? 'auto' : props.borderTop};
+  border-right: ${props.borderRight == null ? 'auto' : props.borderRight};
+  border-bottom: ${props.borderBottom == null ? 'auto' : props.borderBottom};
+  border-left: ${props.borderLeft == null ? 'auto' : props.borderLeft};`
+      : ''}
+
   border-radius: ${props => (props.borderRadius == null ? '0' : props.borderRadius)};
   box-shadow: ${props => (props.boxShadow == null ? '0' : props.boxShadow)};
 
   outline: none;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   &:active {
     box-shadow: 0px 0px 0px #fff;
