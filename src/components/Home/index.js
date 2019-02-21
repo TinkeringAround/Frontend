@@ -1,103 +1,31 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 
 // Context
-//import AppContext from '../../context/app-context'
+import AppContext from '../../context/app-context'
 
 // Theme
 import Theme from '../../theme'
 
 // Atoms
 import Flex from '../atoms/Flex'
-import Container from '../atoms/Container'
 import Text from '../atoms/Text'
 
 // Components
-import Header from './Header'
-import Game from './Game'
+import Header from './header'
+import Spinner from '../Spinner/'
+import Activity from './activity'
+import Levels from './level'
+import Wrapper from '../atoms/AnimatedContainer'
 
 // Mock
-const userData = {
-  _id: '1234345678910111213',
-  email: 't.maier@gingco.net',
-  username: 'Thomas',
-  password: '$2a$10$OOXyjzvKxrHCz1wADGQneuH8Mea6tsp.LVBwUAAeE0CKKuN.7EG.m',
-  meta: {
-    createdAt: new Date(2019, 2, 15),
-    status: 'active',
-    code: '670373'
-  },
-  activities: [
-    {
-      meta: {
-        completed: false
-      },
-      game: {
-        _id: '98765432101112131',
-        title: 'Adventskalender',
-        description: 'Viel Spaß beim ersten digitalen Adventskalender!',
-        meta: {
-          servePuzzlesDaily: false,
-          startDate: new Date(2019, 1, 15)
-        },
-        levels: [
-          {
-            stages: [
-              {
-                title: 'Wo ist das?',
-                comment: 'Zum Einstieg ein relativ leichtes Rätsel für dich.',
-                clue: 'Es befindet sich irgendwo in unserer Wohnung.',
-                type: 'picture',
-                puzzle: {
-                  task: '/assets/images/badezimmer.jpeg',
-                  solution: 'Badezimmer',
-                  hint: ''
-                }
-              },
-              {
-                title: 'Was ist die Antwort?',
-                comment: 'Das sollte ja kein Problem für dich sein.',
-                clue: '',
-                type: 'text',
-                puzzle: {
-                  task: 'Was ist rot, rund und gesund?',
-                  solution: 'Apfel',
-                  hint: ''
-                }
-              }
-            ]
-          },
-          {
-            stages: [
-              {
-                title: 'Errätst du den Code?',
-                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
-                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
-                type: 'matrix',
-                puzzle: {
-                  task: '6,4',
-                  solution: '11, 24, 33, 52',
-                  hint: 'Unter dem Kühlschrank'
-                }
-              }
-            ]
-          }
-        ]
-      },
-      achievements: [
-        {
-          forLevels: ['Badezimmer', '']
-        },
-        {
-          forLevels: ['']
-        }
-      ]
-    }
-  ]
-}
+import userData from './mock'
 
 //--------------------------------------------------------------------------//
 export default () => {
-  //const appContext = useContext(AppContext)
+  const appContext = useContext(AppContext)
+  const [loading, setLoading] = useState(true)
+  const [game, selectGame] = useState(null)
+  const [achievements, selectAchievements] = useState(null)
 
   let finished = true
   const today = new Date()
@@ -107,40 +35,146 @@ export default () => {
     }
   })
 
+  if (appContext.user != null && appContext.user.hasOwnProperty('userID')) {
+    // fetch user data
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }
+
+  const toHome = () => {
+    selectGame(null)
+  }
+
+  const toLevels = (game, achievements) => {
+    selectGame(game)
+    selectAchievements(achievements)
+  }
+
+  const toGame = level => {
+    console.log('Game starting...')
+  }
+
   return (
     <React.Fragment>
-      <Container width="100vw" height="100vh" backgroundColor={Theme.colors.white}>
-        <Header />
-        <Container height="auto" position="absolute" left="0" top="60px" overflow="scroll">
-          <Flex
-            width="90%"
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            marginTop="30px"
-          >
-            <Text
-              color={Theme.textColors.lightGrey}
-              fontSize={Theme.fontSizes.normal}
-              marginBottom="20px"
+      <Header enableBack={game != null} back={toHome} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          <Wrapper animate={game == null} styles={{ width: '100%', height: 'auto', top: '60px' }}>
+            <Flex
+              width="90%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginTop="30px"
             >
-              {finished
-                ? 'Es gibt leider keine neuen Rätsel für dich.'
-                : 'Es gibt neue Rätsel für dich!'}
-            </Text>
+              <Text
+                color={Theme.textColors.lightGrey}
+                fontSize={Theme.fontSizes.normal}
+                marginBottom="20px"
+              >
+                {finished
+                  ? 'Es gibt leider keine neuen Rätsel für dich.'
+                  : 'Es gibt neue Rätsel für dich!'}
+              </Text>
 
-            {userData.activities.map(activity => {
-              return (
-                <Game
-                  key={activity.game._id}
-                  single={userData.activities.length > 1 ? false : true}
-                  game={activity}
+              {userData.activities.map(activity => {
+                return <Activity onClick={toLevels} key={activity.game._id} activity={activity} />
+              })}
+            </Flex>
+          </Wrapper>
+
+          <Wrapper animate={game != null} styles={{ width: '100%', height: 'auto', top: '60px' }}>
+            <Flex
+              width="90%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginTop="30px"
+            >
+              {game != null ? (
+                <Levels
+                  meta={game.meta}
+                  levels={game.levels}
+                  achievements={achievements}
+                  toGame={toGame}
                 />
-              )
-            })}
-          </Flex>
-        </Container>
-      </Container>
+              ) : (
+                ''
+              )}
+            </Flex>
+          </Wrapper>
+        </React.Fragment>
+      )}
     </React.Fragment>
   )
 }
+
+/*
+    {loading ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          <Wrapper
+            pose={game == null ? 'center' : 'left'}
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: 'auto',
+              top: '60px',
+              overflow: 'scroll',
+              margin: '0 auto'
+            }}
+          >
+            <Flex
+              width="90%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginTop="30px"
+            >
+              <Text
+                color={Theme.textColors.lightGrey}
+                fontSize={Theme.fontSizes.normal}
+                marginBottom="20px"
+              >
+                {finished
+                  ? 'Es gibt leider keine neuen Rätsel für dich.'
+                  : 'Es gibt neue Rätsel für dich!'}
+              </Text>
+
+              {userData.activities.map(activity => {
+                return <Activity onClick={showLevels} key={activity.game._id} activity={activity} />
+              })}
+            </Flex>
+          </Wrapper>
+
+          <Wrapper
+            pose={game == null ? 'right' : 'center'}
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: 'auto',
+              top: '60px',
+              overflow: 'scroll',
+              margin: '0 auto'
+            }}
+          >
+            <Flex
+              width="90%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginTop="30px"
+            >
+              {game != null ? (
+                <Levels meta={game.meta} levels={game.levels} achievements={achievements} />
+              ) : (
+                ''
+              )}
+            </Flex>
+          </Wrapper>
+        </React.Fragment>
+      )}*/

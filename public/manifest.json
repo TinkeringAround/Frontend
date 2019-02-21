@@ -1,6 +1,6 @@
 {
-  "short_name": "Pampi's Puzzle",
-  "name": "Rätsel Spiel von Pampi",
+  "short_name": "Frontend",
+  "name": "Rätselspiel für Alina",
   "icons": [
     {
       "src": "favicon.ico",

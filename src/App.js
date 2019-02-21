@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Cookie from 'react-cookies'
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 // Context
@@ -9,51 +8,46 @@ import AppContext from './context/app-context'
 // Theme
 import Theme from './theme'
 
+// Hooks
+import useMedia from './components/atoms/hooks/useMedia'
+
 // Components
 import Login from './components/Login'
 import Home from './components/Home'
+import Wrapper from './components/atoms/AnimatedContainer'
+
+const Pagestyles = {
+  top: '0px',
+  width: '100%',
+  height: '100%',
+  backgroundColor: Theme.colors.white
+}
 
 //-------------------------------------------------------------------------//
-const App = props => {
-  const [authenticated, setAuthenticated] = useState(false)
+const App = () => {
   const [userData, setUserData] = useState(null)
+  const isLarge = useMedia(['(min-width: 800px)'], [true], false)
 
   // Initial Setup
-  if (!authenticated && userData == null) {
+  if (userData == null) {
     const data = Cookie.load('userData')
     if (data != null && data.hasOwnProperty('userID')) {
-      setUserData(data)
-      setAuthenticated(true)
-      props.history.push('/home')
+      setTimeout(() => {
+        setUserData(data)
+      }, 1000)
     }
   }
 
   const login = data => {
     Cookie.save('userData', data, { path: '/' })
     setUserData(data)
-    setAuthenticated(true)
-    props.history.push('/home')
   }
 
   const logout = () => {
     // save everything via API
     Cookie.remove('userData')
     setUserData(null)
-    setAuthenticated(false)
-    props.history.push('/login')
   }
-
-  const routes = authenticated ? (
-    <Switch>
-      <Route to="/home" component={Home} />
-      <Redirect to="/home" />
-    </Switch>
-  ) : (
-    <Switch>
-      <Route to="/login" component={Login} />
-      <Redirect to="/login" />
-    </Switch>
-  )
 
   return (
     <AppContext.Provider
@@ -67,9 +61,24 @@ const App = props => {
         user: userData
       }}
     >
-      <ThemeProvider theme={Theme}>{routes}</ThemeProvider>
+      <ThemeProvider theme={Theme}>
+        {!isLarge ? (
+          <React.Fragment>
+            <Wrapper styles={Pagestyles} animate={userData == null}>
+              <Login />
+            </Wrapper>
+            <Wrapper styles={Pagestyles} animate={userData != null}>
+              <Home />
+            </Wrapper>
+          </React.Fragment>
+        ) : (
+          <h1 style={{ margin: '300px auto', textAlign: 'center' }}>
+            Diese App ist nur für Mobile ausgelegt.
+          </h1>
+        )}
+      </ThemeProvider>
     </AppContext.Provider>
   )
 }
 
-export default withRouter(App)
+export default App

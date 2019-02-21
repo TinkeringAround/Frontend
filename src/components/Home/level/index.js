@@ -1,17 +1,17 @@
 import React from 'react'
 
 // Theme
-import Theme from '../../../../theme'
+import Theme from '../../../theme'
 
 // Atoms
-import Flex from '../../../atoms/Flex'
-import Container from '../../../atoms/Container'
-import Text from '../../../atoms/Text'
-import Button from '../../../atoms/Button'
-import SVG from '../../../atoms/Svg'
+import Flex from '../../atoms/Flex'
+import Container from '../../atoms/Container'
+import Text from '../../atoms/Text'
+import Button from '../../atoms/Button'
+import SVG from '../../atoms/Svg'
 
 // Icons
-import icons from '../../../../assets/icons'
+import icons from '../../../assets/icons'
 
 //--------------------------------------------------------------------------//
 export default props => {
