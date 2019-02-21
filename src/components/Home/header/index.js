@@ -33,15 +33,15 @@ export default props => {
       <Flex height="60px" flexDirection="row" justifyContent="space-between" alignItems="center">
         {enableBack ? (
           <Button
-            width="40px"
-            height="40px"
+            width="30px"
+            height="30px"
+            margin="auto auto auto 20px"
             backgroundColor={Theme.colors.white}
             onClick={() => back()}
-            marginLeft="20px"
           >
             <SVG
-              width="40px"
-              height="40px"
+              width="30px"
+              height="30px"
               margin="auto 0"
               fill={Theme.textColors.lightGrey}
               viewBox={Icons.getSVG('zurueck').viewBox}
