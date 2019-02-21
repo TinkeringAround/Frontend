@@ -10,6 +10,10 @@ import Theme from '../../../theme'
 import Flex from '../../atoms/Flex'
 import Container from '../../atoms/Container'
 import Button from '../../atoms/Button'
+import SVG from '../../atoms/Svg'
+
+// Icons
+import Icons from '../../../assets/icons'
 
 //--------------------------------------------------------------------------//
 export default props => {
@@ -29,18 +33,21 @@ export default props => {
       <Flex height="60px" flexDirection="row" justifyContent="space-between" alignItems="center">
         {enableBack ? (
           <Button
-            width="140px"
+            width="40px"
             height="40px"
-            backgroundColor={Theme.colors.lightBlue}
-            color={Theme.textColors.white}
-            fontSize={Theme.fontSizes.medium}
-            marginRight="20px"
-            marginBottom="12px"
-            borderRadius="12px"
-            boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
+            backgroundColor={Theme.colors.white}
             onClick={() => back()}
+            marginLeft="20px"
           >
-            Zurück
+            <SVG
+              width="40px"
+              height="40px"
+              margin="auto 0"
+              fill={Theme.textColors.lightGrey}
+              viewBox={Icons.getSVG('zurueck').viewBox}
+            >
+              {Icons.getSVG('zurueck').path}
+            </SVG>
           </Button>
         ) : (
           <React.Fragment />

@@ -9,7 +9,7 @@ import AppContext from './context/app-context'
 import Theme from './theme'
 
 // Hooks
-import useMedia from './components/atoms/hooks/useMedia'
+import useMedia from './components/hooks/useMedia'
 
 // Components
 import Login from './components/Login'
