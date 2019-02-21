@@ -11,7 +11,7 @@ import Flex from '../atoms/Flex'
 import Text from '../atoms/Text'
 
 // Components
-import Header from './topping'
+import Header from './header'
 import Spinner from '../Spinner/'
 import Activity from './activity'
 import Levels from './level'
