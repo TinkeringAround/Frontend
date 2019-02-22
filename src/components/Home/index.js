@@ -13,9 +13,8 @@ import Text from '../atoms/Text'
 // Components
 import Header from './header'
 import Spinner from '../Spinner/'
-import Activity from './activity'
-import Levels from './level'
 import Wrapper from '../atoms/AnimatedContainer'
+import Box from '../atoms/Box'
 
 // Mock
 import userData from './mock'
@@ -27,14 +26,6 @@ export default () => {
   const [game, selectGame] = useState(null)
   const [achievements, selectAchievements] = useState(null)
 
-  let finished = true
-  const today = new Date()
-  userData.activities.forEach(activity => {
-    if (!activity.meta.completed && activity.game.meta.startDate < today) {
-      finished = false
-    }
-  })
-
   if (appContext.user != null && appContext.user.hasOwnProperty('userID')) {
     // fetch user data
     setTimeout(() => {
@@ -44,11 +35,6 @@ export default () => {
 
   const toHome = () => {
     selectGame(null)
-  }
-
-  const toLevels = (game, achievements) => {
-    selectGame(game)
-    selectAchievements(achievements)
   }
 
   const toGame = level => {
@@ -71,39 +57,19 @@ export default () => {
               marginTop="30px"
             >
               <Text
-                color={Theme.textColors.lightGrey}
-                fontSize={Theme.fontSizes.normal}
+                color={Theme.textColors.darkGrey}
+                fontSize={Theme.fontSizes.xxxlarge}
+                marginLeft="0px"
                 marginBottom="20px"
               >
-                {finished
-                  ? 'Es gibt leider keine neuen Rätsel für dich.'
-                  : 'Es gibt neue Rätsel für dich!'}
+                Aktivitäten
               </Text>
 
               {userData.activities.map(activity => {
-                return <Activity onClick={toLevels} key={activity.game._id} activity={activity} />
-              })}
-            </Flex>
-          </Wrapper>
+                console.log('Activity: ', activity)
 
-          <Wrapper animate={game != null} styles={{ width: '100%', height: 'auto', top: '60px' }}>
-            <Flex
-              width="90%"
-              flexDirection="column"
-              justifyContent="flex-start"
-              alignItems="center"
-              marginTop="30px"
-            >
-              {game != null ? (
-                <Levels
-                  meta={game.meta}
-                  levels={game.levels}
-                  achievements={achievements}
-                  toGame={toGame}
-                />
-              ) : (
-                ''
-              )}
+                return <React.Fragment />
+              })}
             </Flex>
           </Wrapper>
         </React.Fragment>
@@ -111,3 +77,32 @@ export default () => {
     </React.Fragment>
   )
 }
+
+/*{['Apfel', 'Banane', 'Teppich'].map(activity => {
+  console.log('Activity: ', activity)
+
+  return (
+    <div className="">
+      <h1>{activity}</h1>
+    </div>
+  )
+})}
+
+               {userData.activities.map(activity => {
+                  console.log('Activity: ', activity)
+
+                  return (
+                    <Box
+                      key={activity.game._id}
+                      width="100%"
+                      height="100%"
+                      backgroundColor={Theme.colors.lightBlue}
+                      borderRadius="12px"
+                    >
+                      <Text margin="100px auto" color={Theme.textColors.darkGrey}>
+                        {activity.game.title}
+                      </Text>
+                    </Box>
+                  )
+                })}
+                */

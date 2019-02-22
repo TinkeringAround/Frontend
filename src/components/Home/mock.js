@@ -12,6 +12,7 @@ const userData = {
   activities: [
     {
       meta: {
+        creator: 'Thomas Maier',
         completed: false
       },
       game: {

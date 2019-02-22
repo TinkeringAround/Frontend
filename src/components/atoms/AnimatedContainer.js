@@ -44,7 +44,7 @@ const Page = posed.div({
 })
 
 export default props => {
-  const { children, animate, styles } = props
+  const { children, animate, styles, position } = props
   const [pose, setPose] = useState('right')
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default props => {
     <Page
       pose={pose}
       style={{
-        position: 'absolute',
+        position: position != null ? position : 'absolute',
         ...styles
       }}
     >

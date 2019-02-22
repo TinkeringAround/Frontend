@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 //--------------------------------------------------------------------------//
-const Text = styled.text`
+const Text = styled.p`
   width: ${props => (props.width == null ? 'auto' : props.width)};
   height: ${props => (props.height == null ? 'auto' : props.height)};
 
