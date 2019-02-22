@@ -19,6 +19,9 @@ const Flex = styled.div`
   margin-left: ${props.marginLeft == null ? 'auto' : props.marginLeft};`
       : ''}
   
+  background-color: ${props =>
+    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
+
   padding: ${props => (props.padding == null ? '0' : props.padding)};
   ${props =>
     props.padding == null

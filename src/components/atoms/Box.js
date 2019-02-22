@@ -23,7 +23,8 @@ const Box = styled.div`
   padding-left: ${props.paddingLeft == null ? 'auto' : props.paddingLeft};`
       : ''}
 
-  background-color: ${props => (props.backgroundColor == null ? '#FFF' : props.backgroundColor)};
+  background-color: ${props =>
+    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
 
   border: ${props => (props.border == null ? 'none' : props.border)};
   ${props =>

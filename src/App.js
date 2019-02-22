@@ -14,7 +14,7 @@ import useMedia from './components/hooks/useMedia'
 // Components
 import Login from './components/Login'
 import Home from './components/Home'
-import Wrapper from './components/atoms/AnimatedContainer'
+import Page from './components/atoms/AnimatedContainer'
 
 const Pagestyles = {
   top: '0px',
@@ -64,12 +64,12 @@ const App = () => {
       <ThemeProvider theme={Theme}>
         {!isLarge ? (
           <React.Fragment>
-            <Wrapper styles={Pagestyles} animate={userData == null}>
+            <Page styles={Pagestyles} animate={userData == null}>
               <Login />
-            </Wrapper>
-            <Wrapper styles={Pagestyles} animate={userData != null}>
+            </Page>
+            <Page styles={Pagestyles} animate={userData != null}>
               <Home />
-            </Wrapper>
+            </Page>
           </React.Fragment>
         ) : (
           <h1 style={{ margin: '300px auto', textAlign: 'center' }}>
