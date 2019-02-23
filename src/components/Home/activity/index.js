@@ -128,7 +128,6 @@ export default props => {
             borderRadius={Theme.borderRadius}
             boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
             onClick={() => {
-              console.log('To Levels...')
               toLevels(activity)
             }}
           >

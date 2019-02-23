@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import posed from 'react-pose'
 
 // Animations
-const DURATION = 1000
+const DURATION = 400
 const DAMPING = 20
 const LEFT_LEFT = '-100vw'
 const LEFT_RIGHT = '100vw'
@@ -22,7 +22,7 @@ const Page = posed.div({
   center: {
     opacity: 1,
     left: 0,
-    delay: 350,
+    delay: 400,
     transition: {
       left: {
         duration: DURATION,

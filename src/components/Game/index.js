@@ -20,7 +20,7 @@ import Box from '../atoms/Box'
 export default props => {
   const appContext = useContext(AppContext)
   const { stage } = props
-  const [percentage, setPercentage] = useState(10)
+  const [percentage] = useState(10)
 
   return (
     <React.Fragment>
