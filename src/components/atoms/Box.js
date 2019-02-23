@@ -36,5 +36,6 @@ const Box = styled.div`
       : ''}
 
   border-radius: ${props => (props.borderRadius == null ? '0' : props.borderRadius)};
+  box-shadow: ${props => (props.boxShadow == null ? '0' : props.boxShadow)};
 `
 export default Box

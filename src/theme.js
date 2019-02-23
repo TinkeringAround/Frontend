@@ -3,7 +3,7 @@ const theme = {
   colors: {
     white: '#FFF',
     blue: '#00C2FF',
-    yellow: '#FEE06D',
+    yellow: '#FFC300',
     overlay: '#C4F791',
     disabled: '#FAFAFA',
 
@@ -16,6 +16,8 @@ const theme = {
     lightGreen: '#24CD3F',
     darkGreen: '#4ABE5D'
   },
+
+  borderRadius: '50px',
 
   // Font
   fontFamily: 'Arial Rounded MT Bold',

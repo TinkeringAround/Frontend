@@ -14,7 +14,8 @@ import Wrapper from '../atoms/AnimatedContainer'
 // Components
 import Header from './header'
 import Spinner from '../Spinner/'
-import Card from './card'
+import Activity from './activity'
+import Level from './level'
 
 // Mock
 import userData from './mock'
@@ -22,53 +23,83 @@ import userData from './mock'
 //--------------------------------------------------------------------------//
 export default () => {
   const appContext = useContext(AppContext)
+  const [activities, setActivities] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [game, selectGame] = useState(null)
+  const [activity, setActivity] = useState(null)
 
   if (appContext.user != null && appContext.user.hasOwnProperty('userID')) {
-    // fetch user data
+    // fetch activity data
     setTimeout(() => {
+      setActivities(userData.activities)
       setLoading(false)
     }, 1000)
   }
 
-  const toHome = () => {
-    selectGame(null)
+  const toLevels = activity => {
+    setActivity(activity)
   }
 
-  const toGame = level => {
-    console.log('Game starting...')
+  const toActivities = () => {
+    setActivity(null)
+  }
+
+  const playGame = (activity, levelIndex, stageIndex) => {
+    appContext.setStage(activity.game.levels[levelIndex].stages[stageIndex])
+    setActivity(null)
   }
 
   return (
     <React.Fragment>
-      <Header enableBack={game != null} back={toHome} />
+      <Header showBack={activity != null} toActivities={toActivities} />
       {loading ? (
         <Spinner />
       ) : (
-        <Wrapper animate={game == null} styles={{ width: '100%', height: 'auto', top: '60px' }}>
-          <Flex
-            width="90%"
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            marginTop="30px"
+        <React.Fragment>
+          <Wrapper
+            animate={activity == null}
+            styles={{ width: '100%', height: 'auto', top: '60px' }}
           >
-            <Text
-              color={Theme.textColors.darkGrey}
-              fontSize={Theme.fontSizes.xxxlarge}
-              marginLeft="0px"
-              marginBottom="10px"
+            <Flex
+              width="90%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              marginTop="30px"
             >
-              Aktivitäten
-            </Text>
+              <Text
+                color={Theme.textColors.darkGrey}
+                fontSize={Theme.fontSizes.xxxlarge}
+                textAlign="center"
+                marginBottom="10px"
+              >
+                Aktivitäten
+              </Text>
 
-            {userData.activities.map(activity => {
-              console.log('Activity: ', activity)
-              return <Card key={activity.game._id} activity={activity} />
-            })}
-          </Flex>
-        </Wrapper>
+              {activities.map((activity, index) => {
+                return <Activity key={index} activity={activity} toLevels={toLevels} />
+              })}
+            </Flex>
+          </Wrapper>
+          <Wrapper
+            animate={activity != null}
+            styles={{ width: '100%', height: 'auto', top: '60px' }}
+          >
+            <Flex
+              width="90%"
+              height="auto"
+              marginTop="30px"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+            >
+              {activity != null ? (
+                <Level activity={activity} play={playGame} />
+              ) : (
+                <React.Fragment />
+              )}
+            </Flex>
+          </Wrapper>
+        </React.Fragment>
       )}
     </React.Fragment>
   )

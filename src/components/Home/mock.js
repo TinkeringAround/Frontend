@@ -30,9 +30,9 @@ const userData = {
                 title: 'Wo ist das?',
                 comment: 'Zum Einstieg ein relativ leichtes Rätsel für dich.',
                 clue: 'Es befindet sich irgendwo in unserer Wohnung.',
-                type: 'picture',
+                type: 'text',
                 puzzle: {
-                  task: '/assets/images/badezimmer.jpeg',
+                  task: 'Wo gehen wir immer auf Klo?',
                   solution: 'Badezimmer',
                   hint: ''
                 }

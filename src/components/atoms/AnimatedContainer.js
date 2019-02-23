@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import posed from 'react-pose'
 
 // Animations
-const DURATION = 1250
-const DAMPING = 13
+const DURATION = 1000
+const DAMPING = 20
 const LEFT_LEFT = '-100vw'
 const LEFT_RIGHT = '100vw'
 

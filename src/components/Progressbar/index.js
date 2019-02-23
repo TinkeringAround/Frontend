@@ -26,7 +26,7 @@ const Progressbar = posed.div({
 
 //--------------------------------------------------------------------------//
 export default props => {
-  const { color, backgroundColor, shadingColor, percentage } = props
+  const { color, backgroundColor, percentage, showText } = props
   const [pose, setPose] = useState('hidden')
 
   setTimeout(() => {
@@ -35,9 +35,17 @@ export default props => {
 
   return (
     <Flex height="50px" width="100%" flexDirection="column" justifyContent="center">
-      <Text fontSize={Theme.fontSizes.xlarge} color={Theme.textColors.darkGrey} textAlign="center">
-        {percentage + '%'}
-      </Text>
+      {showText != null && showText ? (
+        <Text
+          fontSize={Theme.fontSizes.xlarge}
+          color={Theme.textColors.darkGrey}
+          textAlign="center"
+        >
+          {percentage + '% gelöst'}
+        </Text>
+      ) : (
+        ''
+      )}
       <Box width="80%" height="20px" borderRadius="12px" backgroundColor={backgroundColor}>
         <Progressbar
           pose={pose}

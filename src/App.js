@@ -12,9 +12,10 @@ import Theme from './theme'
 import useMedia from './components/hooks/useMedia'
 
 // Components
+import Page from './components/atoms/AnimatedContainer'
 import Login from './components/Login'
 import Home from './components/Home'
-import Page from './components/atoms/AnimatedContainer'
+import Game from './components/Game'
 
 const Pagestyles = {
   top: '0px',
@@ -26,6 +27,7 @@ const Pagestyles = {
 //-------------------------------------------------------------------------//
 const App = () => {
   const [userData, setUserData] = useState(null)
+  const [stage, setStage] = useState(null)
   const isLarge = useMedia(['(min-width: 800px)'], [true], false)
 
   // Initial Setup
@@ -46,8 +48,12 @@ const App = () => {
   const logout = () => {
     // save everything via API
     Cookie.remove('userData')
+    setStage(null)
     setUserData(null)
   }
+
+  console.log('UserData: ', userData)
+  console.log('Stage: ', stage)
 
   return (
     <AppContext.Provider
@@ -58,6 +64,9 @@ const App = () => {
         logout: () => {
           logout()
         },
+        setStage: stage => {
+          setStage(stage)
+        },
         user: userData
       }}
     >
@@ -67,8 +76,11 @@ const App = () => {
             <Page styles={Pagestyles} animate={userData == null}>
               <Login />
             </Page>
-            <Page styles={Pagestyles} animate={userData != null}>
+            <Page styles={Pagestyles} animate={userData != null && stage == null}>
               <Home />
+            </Page>
+            <Page styles={Pagestyles} animate={userData != null && stage != null}>
+              <Game stage={stage} />
             </Page>
           </React.Fragment>
         ) : (

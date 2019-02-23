@@ -11,14 +11,12 @@ import Flex from '../../atoms/Flex'
 import Container from '../../atoms/Container'
 import Button from '../../atoms/Button'
 import SVG from '../../atoms/Svg'
-
-// Icons
-import Icons from '../../../assets/icons'
+import icons from '../../../assets/icons'
 
 //--------------------------------------------------------------------------//
 export default props => {
   const appContext = useContext(AppContext)
-  const { enableBack, back } = props
+  const { showBack, toActivities } = props
 
   return (
     <Container
@@ -31,22 +29,22 @@ export default props => {
       overflowY="hidden"
     >
       <Flex height="60px" flexDirection="row" justifyContent="space-between" alignItems="center">
-        {enableBack ? (
+        {showBack ? (
           <Button
-            width="30px"
-            height="30px"
-            margin="auto auto auto 20px"
-            backgroundColor={Theme.colors.white}
-            onClick={() => back()}
+            marginLeft="20px"
+            width="40px"
+            height="40px"
+            onClick={() => {
+              toActivities()
+            }}
           >
             <SVG
-              width="30px"
-              height="30px"
-              margin="auto 0"
-              fill={Theme.textColors.lightGrey}
-              viewBox={Icons.getSVG('zurueck').viewBox}
+              width="40px"
+              height="40px"
+              fill={Theme.colors.darkGrey}
+              viewBox={icons.getSVG('back').viewBox}
             >
-              {Icons.getSVG('zurueck').path}
+              {icons.getSVG('back').path}
             </SVG>
           </Button>
         ) : (
@@ -60,11 +58,13 @@ export default props => {
           fontSize={Theme.fontSizes.medium}
           marginRight="20px"
           marginBottom="12px"
-          borderRadius="12px"
+          borderRadius={Theme.borderRadius}
           boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
           onClick={() => {
-            back()
-            appContext.logout()
+            toActivities()
+            setTimeout(() => {
+              appContext.logout()
+            }, 250)
           }}
         >
           Abmelden
