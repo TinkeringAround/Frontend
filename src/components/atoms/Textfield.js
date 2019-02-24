@@ -32,9 +32,16 @@ const Textfield = styled.input`
     props.letterSpacing == null ? props.theme.letterSpacing : props.letterSpacing};
 
   background-color: ${props =>
-    props.backgroundColor == null ? props.theme.colors.white : props.backgroundColor};
+    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
 
-  border: none;
+border: ${props => (props.border == null ? 'none' : props.border)};
+  ${props =>
+    props.border == null
+      ? `border-top: ${props.borderTop == null ? 'auto' : props.borderTop};
+  border-right: ${props.borderRight == null ? 'auto' : props.borderRight};
+  border-bottom: ${props.borderBottom == null ? 'auto' : props.borderBottom};
+  border-left: ${props.borderLeft == null ? 'auto' : props.borderLeft};`
+      : ''}
 
   &:focus {
     outline: none;

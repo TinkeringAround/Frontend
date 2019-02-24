@@ -25,10 +25,13 @@ export default props => {
 
     if (date > today) return <React.Fragment />
 
+    console.log(level.stages.length)
+    console.log(parseInt((level.stages.length - 1) / 2))
+
     return (
       <Container
         key={'Game-' + levelIndex}
-        height={135 + 120 * (level.stages.length - 1) + 'px'}
+        height={220 + 150 * parseInt((level.stages.length - 1) / 2) + 'px'}
         backgroundColor={Theme.colors.white}
         marginTop="20px"
         marginBottom="10px"
@@ -36,63 +39,48 @@ export default props => {
         <Flex flexDirection="column" justifyContent="flex-start" alignItems="center">
           <Text
             color={Theme.textColors.lightGrey}
-            fontSize={Theme.fontSizes.normal}
+            fontSize={Theme.fontSizes.medium}
             margin="0 auto"
           >
             {date.getDate() + '.' + date.toLocaleString('de', { month: 'long' })}
           </Text>
-          {level.stages.map((stage, stageIndex) => {
-            const solved =
-              stage.puzzle.solution === achievements[levelIndex].forLevels[stageIndex]
-                ? true
-                : false
-            const svg = icons.getSVG(stage.type)
+          <Flex justifyContent="center" alignItems="center" marginTop="15px" flexWrap="wrap">
+            {level.stages.map((stage, stageIndex) => {
+              const solved =
+                stage.puzzle.solution === achievements[levelIndex].forLevels[stageIndex]
+                  ? true
+                  : false
+              const svg = icons.getSVG(stage.type)
 
-            return (
-              <Button
-                key={'Game-' + levelIndex + '-Stage-' + stageIndex}
-                width="100%"
-                height="100px"
-                margin="5px auto 10px auto"
-                backgroundColor={solved ? Theme.colors.disabled : Theme.colors.lightBlue}
-                borderRadius="12px"
-                boxShadow={`0 5px 0 ${solved ? Theme.colors.lightGrey : Theme.colors.darkBlue}`}
-                onClick={() => play(activity, levelIndex, stageIndex)}
-              >
-                <Flex justifyContent="space-around" alignItems="center">
-                  <SVG
-                    width="80px"
-                    height="80px"
-                    margin="auto 20px"
-                    fill={solved ? Theme.textColors.lightGrey : Theme.textColors.white}
-                    viewBox={svg.viewBox}
-                  >
-                    {svg.path}
-                  </SVG>
-                  <Flex flexDirection="column" justifyContent="center" alignItems="center">
-                    <Text
-                      width="90%"
-                      margin="auto auto 8px 0"
-                      fontSize={Theme.fontSizes.large}
-                      color={solved ? Theme.textColors.lightGrey : Theme.textColors.white}
+              return (
+                <Button
+                  key={'Game-' + levelIndex + '-Stage-' + stageIndex}
+                  width="120px"
+                  height="120px"
+                  margin="20px"
+                  backgroundColor={solved ? Theme.colors.disabled : Theme.colors.lightBlue}
+                  borderRadius="100px"
+                  onClick={() => play(activity, levelIndex, stageIndex)}
+                >
+                  <Flex justifyContent="center" alignItems="center">
+                    <SVG
+                      width="80px"
+                      height="80px"
+                      margin="auto"
+                      fill={solved ? Theme.textColors.lightGrey : Theme.textColors.white}
+                      viewBox={svg.viewBox}
                     >
-                      {stage.title}
-                    </Text>
-                    <Text
-                      width="90%"
-                      margin="0 auto auto 0"
-                      fontSize={Theme.fontSizes.default}
-                      color={solved ? Theme.textColors.lightGrey : Theme.textColors.white}
-                    >
-                      {stage.comment}
-                    </Text>
+                      {svg.path}
+                    </SVG>
                   </Flex>
-                </Flex>
-              </Button>
-            )
-          })}
+                </Button>
+              )
+            })}
+          </Flex>
         </Flex>
       </Container>
     )
   })
 }
+
+//

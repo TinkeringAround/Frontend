@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import posed from 'react-pose'
 
 // Theme
@@ -14,11 +14,19 @@ const Progressbar = posed.div({
   hidden: {
     width: 0
   },
-  show: {
+  rest: {
     width: ({ percentage }) => percentage,
     transition: {
       width: {
-        duration: 1000
+        duration: 500
+      }
+    }
+  },
+  update: {
+    width: ({ percentage }) => percentage,
+    transition: {
+      width: {
+        duration: 500
       }
     }
   }
@@ -30,8 +38,15 @@ export default props => {
   const [pose, setPose] = useState('hidden')
 
   setTimeout(() => {
-    setPose('show')
-  }, 1000)
+    setPose('rest')
+  }, 250)
+
+  useEffect(() => {
+    setPose('update')
+    setTimeout(() => {
+      setPose('rest')
+    }, 550)
+  }, [percentage])
 
   return (
     <Flex height="50px" width="100%" flexDirection="column" justifyContent="center">

@@ -36,8 +36,7 @@ const Page = posed.div({
     left: LEFT_RIGHT,
     transition: {
       left: {
-        type: 'spring',
-        damping: DAMPING
+        duration: 50
       }
     }
   }

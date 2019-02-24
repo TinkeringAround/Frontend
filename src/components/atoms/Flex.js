@@ -7,6 +7,8 @@ const Flex = styled.div`
   justify-content: ${props => (props.justifyContent == null ? 'center' : props.justifyContent)};
   align-items: ${props => (props.alignItems == null ? 'center' : props.alignItems)};
 
+  flex-wrap: ${props => (props.flexWrap == null ? 'nowrap' : props.flexWrap)};
+
   width: ${props => (props.width == null ? '100%' : props.width)};
   height: ${props => (props.height == null ? '100%' : props.height)};
 

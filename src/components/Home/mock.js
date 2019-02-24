@@ -18,7 +18,6 @@ const userData = {
       game: {
         _id: '98765432101112131',
         title: 'Adventskalender',
-        description: 'Viel Spaß beim ersten digitalen Adventskalender!',
         meta: {
           servePuzzlesDaily: false,
           startDate: new Date(2019, 1, 15)
@@ -47,6 +46,28 @@ const userData = {
                   solution: 'Apfel',
                   hint: ''
                 }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
               }
             ]
           },
@@ -62,6 +83,109 @@ const userData = {
                   solution: '11, 24, 33, 52',
                   hint: 'Unter dem Kühlschrank'
                 }
+              },
+              {
+                title: 'Errätst du den Code?',
+                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
+                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
+                type: 'matrix',
+                puzzle: {
+                  task: '6,4',
+                  solution: '11, 24, 33, 52',
+                  hint: 'Unter dem Kühlschrank'
+                }
+              },
+              {
+                title: 'Errätst du den Code?',
+                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
+                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
+                type: 'matrix',
+                puzzle: {
+                  task: '6,4',
+                  solution: '11, 24, 33, 52',
+                  hint: 'Unter dem Kühlschrank'
+                }
+              },
+              {
+                title: 'Errätst du den Code?',
+                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
+                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
+                type: 'matrix',
+                puzzle: {
+                  task: '6,4',
+                  solution: '11, 24, 33, 52',
+                  hint: 'Unter dem Kühlschrank'
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
+              }
+            ]
+          },
+          {
+            stages: [
+              {
+                title: 'Wo ist das?',
+                comment: 'Zum Einstieg ein relativ leichtes Rätsel für dich.',
+                clue: 'Es befindet sich irgendwo in unserer Wohnung.',
+                type: 'text',
+                puzzle: {
+                  task: 'Wo gehen wir immer auf Klo?',
+                  solution: 'Badezimmer',
+                  hint: ''
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
+              },
+              {
+                title: 'Was ist die Antwort?',
+                comment: 'Das sollte ja kein Problem für dich sein.',
+                clue: '',
+                type: 'text',
+                puzzle: {
+                  task: 'Was ist rot, rund und gesund?',
+                  solution: 'Apfel',
+                  hint: ''
+                }
               }
             ]
           }
@@ -69,10 +193,13 @@ const userData = {
       },
       achievements: [
         {
-          forLevels: ['Badezimmer', '']
+          forLevels: ['Badezimmer', 'Apfel', 'Apfel', '']
         },
         {
-          forLevels: ['']
+          forLevels: ['', '', '', '', '', '']
+        },
+        {
+          forLevels: ['Badezimmer', 'Apfel', '', '']
         }
       ]
     }
