@@ -6,15 +6,15 @@ import Theme from '../../../theme'
 // Atoms
 import Flex from '../../atoms/Flex'
 import Text from '../../atoms/Text'
-import Box from '../../atoms/Box'
 import SVG from '../../atoms/Svg'
+import Button from '../../atoms/Button'
+import Box from '../../atoms/Box'
 
 // Components
 import Progressbar from '../../Progressbar'
 
 // Icons
 import Icons from '../../../assets/icons'
-import Button from '../../atoms/Button'
 
 //--------------------------------------------------------------------------//
 export default props => {
@@ -25,7 +25,7 @@ export default props => {
     activity.game.levels.forEach(level => {
       puzzles = puzzles + level.stages.length
     })
-    return puzzles + ' Rätsel'
+    return puzzles
   }
 
   const calculateSolved = activity => {
@@ -48,93 +48,107 @@ export default props => {
 
   return (
     <Box
-      margin="15px auto"
-      width="100%"
-      height="450px"
       backgroundColor={Theme.colors.lightBlue}
-      borderRadius={Theme.borderRadius}
+      height="95%"
+      width="95%"
+      margin="20px 10px"
+      borderRadius="12px"
+      boxShadow="0px 0px 10px 1px rgba(0,0,0,0.15)"
     >
-      <Flex
-        flexDirection="column"
-        width="100%"
-        height="100%"
-        margin="0"
-        justifyContent="flex-start"
+      <Button
+        margin="0 0 0 5%"
+        width="95%"
+        height="auto"
+        backgroundColor={Theme.colors.white}
+        borderRadius="0 12px 12px 0"
+        onClick={() => {
+          toLevels(activity)
+        }}
       >
-        <Text
-          margin="30px auto 10px auto"
-          height="35px"
-          color={Theme.textColors.white}
-          fontSize={Theme.fontSizes.xxxlarge}
+        <Flex
+          flexDirection="column"
+          width="100%"
+          height="100%"
+          margin="0"
+          justifyContent="flex-start"
         >
-          {activity.game.title}
-        </Text>
-        <Flex margin="0px" width="100%" height="150px" justifyContent="space-between">
-          <Flex flexDirection="column" justfiyContent="center" width="50%" height="150px">
-            <SVG
-              width="80px"
-              height="80px"
-              margin="0 auto"
-              fill={Theme.colors.yellow}
-              viewBox={Icons.getSVG('star').viewBox}
-            >
-              {Icons.getSVG('star').path}
-            </SVG>
-            <Text
-              margin="10px auto 0 auto"
-              textAlign="center"
-              fontSize={Theme.fontSizes.xlarge}
-              color={Theme.textColors.darkGrey}
-            >
-              {activity.game.levels.length + ' Level'}
-            </Text>
-          </Flex>
-          <Flex flexDirection="column" justfiyContent="center" width="50%" height="150px">
-            <SVG
-              width="80px"
-              height="80px"
-              margin="0 auto"
-              fill={Theme.colors.yellow}
-              viewBox={Icons.getSVG('dice').viewBox}
-            >
-              {Icons.getSVG('dice').path}
-            </SVG>
-            <Text
-              margin="10px auto 0 auto"
-              textAlign="center"
-              fontSize={Theme.fontSizes.xlarge}
-              color={Theme.textColors.darkGrey}
-            >
-              {countPuzzles(activity)}
-            </Text>
-          </Flex>
-        </Flex>
-        <Flex margin="10px 0 0 0" width="100%" height="60px" justifyContent="center">
-          <Progressbar
-            showText
-            backgroundColor={Theme.colors.darkBlue}
-            color={Theme.colors.white}
-            percentage={calculateSolved(activity)}
-          />
-        </Flex>
-        <Flex width="100%" height="70px" justifyContent="center" alignItems="center">
-          <Button
-            width="80%"
-            height="60px"
-            margin="0 auto"
-            backgroundColor={Theme.colors.white}
+          <Text
+            margin="20px auto"
+            height="30px"
+            width="100%"
+            textAlign="center"
             color={Theme.textColors.darkGrey}
             fontSize={Theme.fontSizes.xxxlarge}
-            borderRadius={Theme.borderRadius}
-            boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
-            onClick={() => {
-              toLevels(activity)
-            }}
           >
-            Spielen
-          </Button>
+            {activity.game.title}
+          </Text>
+
+          <Flex
+            width="100%"
+            height="25px"
+            justfiyContent="flex-start"
+            alignItems="center"
+            margin="0 auto"
+          >
+            <Flex width="100%" height="100%" justifyContent="center" alignItems="center">
+              <SVG
+                width="20px"
+                height="20px"
+                margin="0"
+                fill={Theme.colors.yellow}
+                viewBox={Icons.getSVG('star').viewBox}
+              >
+                {Icons.getSVG('star').path}
+              </SVG>
+              <Text
+                margin="0 20px 0 10px"
+                textAlign="center"
+                fontSize={Theme.fontSizes.medium}
+                color={Theme.textColors.darkGrey}
+              >
+                {activity.game.levels.length + ' Level'}
+              </Text>
+              <SVG
+                width="20px"
+                height="20px"
+                margin="0 0 0 20px"
+                fill={Theme.colors.yellow}
+                viewBox={Icons.getSVG('dice').viewBox}
+              >
+                {Icons.getSVG('dice').path}
+              </SVG>
+              <Text
+                margin="0 0 0 10px"
+                textAlign="center"
+                fontSize={Theme.fontSizes.medium}
+                color={Theme.textColors.darkGrey}
+              >
+                {countPuzzles(activity) + ' Rätsel'}
+              </Text>
+            </Flex>
+          </Flex>
+
+          <Flex
+            width="80%"
+            height="50px"
+            justifyContent="center"
+            alignItems="center"
+            margin="10px auto 20px auto"
+          >
+            <Progressbar
+              styles={{
+                color: Theme.colors.lightBlue,
+                backgroundColor: Theme.colors.lightGrey,
+                width: '100%',
+                height: '15px'
+              }}
+              fullWidth
+              showText
+              percentage={calculateSolved(activity)}
+            />
+          </Flex>
         </Flex>
-      </Flex>
+      </Button>
     </Box>
   )
 }

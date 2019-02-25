@@ -34,7 +34,7 @@ export default props => {
         break
       }
       default: {
-        component = ''
+        component = '<Matrix setSolution={setSolution} />'
       }
     }
   }
@@ -46,8 +46,12 @@ export default props => {
           <Container height="10%" width="100%" position="absolute" top="0px" left="0px">
             <Flex width="100%" height="100%" justifyContent="flex-start" alignItems="center">
               <Progressbar
-                backgroundColor={Theme.colors.lightGrey}
-                color={Theme.colors.darkGreen}
+                styles={{
+                  height: '20px',
+                  color: Theme.colors.darkGreen,
+                  backgroundColor: Theme.colors.lightGrey,
+                  borderRadius: '12px'
+                }}
                 percentage={percentage}
               />
               <Button
@@ -55,6 +59,8 @@ export default props => {
                 width="40px"
                 height="40px"
                 onClick={() => {
+                  setSolution('')
+                  setPercentage(10)
                   appContext.setStage(null)
                 }}
               >
@@ -100,7 +106,8 @@ export default props => {
                 fontSize={Theme.fontSizes.xxlarge}
                 textAlign="left"
                 width="80%"
-                margin="0 auto"
+                height="30px"
+                margin="1px auto"
                 placeholder="Lösung"
                 borderBottom={'1px solid ' + Theme.colors.darkGrey}
                 onChange={event => {

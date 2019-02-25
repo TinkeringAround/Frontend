@@ -12,6 +12,7 @@ import SVG from '../../atoms/Svg'
 
 // Icons
 import icons from '../../../assets/icons'
+import Box from '../../atoms/Box'
 
 //--------------------------------------------------------------------------//
 export default props => {
@@ -25,13 +26,10 @@ export default props => {
 
     if (date > today) return <React.Fragment />
 
-    console.log(level.stages.length)
-    console.log(parseInt((level.stages.length - 1) / 2))
-
     return (
       <Container
         key={'Game-' + levelIndex}
-        height={220 + 150 * parseInt((level.stages.length - 1) / 2) + 'px'}
+        height={150 + 150 * parseInt((level.stages.length - 1) / 2) + 'px'}
         backgroundColor={Theme.colors.white}
         marginTop="20px"
         marginBottom="10px"
@@ -44,7 +42,7 @@ export default props => {
           >
             {date.getDate() + '.' + date.toLocaleString('de', { month: 'long' })}
           </Text>
-          <Flex justifyContent="center" alignItems="center" marginTop="15px" flexWrap="wrap">
+          <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             {level.stages.map((stage, stageIndex) => {
               const solved =
                 stage.puzzle.solution === achievements[levelIndex].forLevels[stageIndex]
@@ -53,27 +51,58 @@ export default props => {
               const svg = icons.getSVG(stage.type)
 
               return (
-                <Button
+                <Container
                   key={'Game-' + levelIndex + '-Stage-' + stageIndex}
                   width="120px"
                   height="120px"
-                  margin="20px"
-                  backgroundColor={solved ? Theme.colors.disabled : Theme.colors.lightBlue}
-                  borderRadius="100px"
-                  onClick={() => play(activity, levelIndex, stageIndex)}
+                  margin="5px 10px"
+                  position="relative"
                 >
-                  <Flex justifyContent="center" alignItems="center">
-                    <SVG
-                      width="80px"
-                      height="80px"
+                  <SVG
+                    position="absolute"
+                    width="55px"
+                    height="55px"
+                    margin="0"
+                    bottom="0px"
+                    right="0px"
+                    fill={solved ? Theme.colors.yellow : Theme.colors.lightGrey}
+                    stroke="white"
+                    strokeWidth="20"
+                    viewBox={icons.getSVG('crown').viewBox}
+                    zIndex="100"
+                  >
+                    {icons.getSVG('crown').path}
+                  </SVG>
+                  <Flex width="100%" height="100%" justifyContent="center" alignItems="center">
+                    <Button
+                      width="90%"
+                      height="90%"
                       margin="auto"
-                      fill={solved ? Theme.textColors.lightGrey : Theme.textColors.white}
-                      viewBox={svg.viewBox}
+                      backgroundColor={solved ? Theme.colors.yellow : Theme.colors.lightGrey}
+                      borderRadius="100px"
+                      onClick={() => play(activity, levelIndex, stageIndex)}
                     >
-                      {svg.path}
-                    </SVG>
+                      <Box
+                        width="85%"
+                        height="85%"
+                        borderRadius="100px"
+                        backgroundColor={Theme.colors.white}
+                      >
+                        <Flex justifyContent="center" alignItems="center">
+                          <SVG
+                            width="45px"
+                            height="45px"
+                            margin="auto"
+                            fill={solved ? Theme.colors.yellow : Theme.colors.lightGrey}
+                            viewBox={svg.viewBox}
+                          >
+                            {svg.path}
+                          </SVG>
+                        </Flex>
+                      </Box>
+                    </Button>
                   </Flex>
-                </Button>
+                </Container>
               )
             })}
           </Flex>

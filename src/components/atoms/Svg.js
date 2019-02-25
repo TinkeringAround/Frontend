@@ -30,5 +30,7 @@ const SVG = styled.svg`
   height: ${props => (props.height == null ? '100%' : props.height)};
 
   fill: ${props => (props.fill == null ? '#000' : props.fill)};
+  stroke:  ${props => (props.stroke == null ? 'none' : props.stroke)};
+  stroke-width: ${props => (props.strokeWidth == null ? '0' : props.strokeWidth)};
 `
 export default SVG

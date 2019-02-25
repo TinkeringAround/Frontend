@@ -37,11 +37,13 @@ const Textfield = styled.input`
 border: ${props => (props.border == null ? 'none' : props.border)};
   ${props =>
     props.border == null
-      ? `border-top: ${props.borderTop == null ? 'auto' : props.borderTop};
-  border-right: ${props.borderRight == null ? 'auto' : props.borderRight};
-  border-bottom: ${props.borderBottom == null ? 'auto' : props.borderBottom};
-  border-left: ${props.borderLeft == null ? 'auto' : props.borderLeft};`
+      ? `border-top: ${props.borderTop == null ? 'none' : props.borderTop};
+  border-right: ${props.borderRight == null ? 'none' : props.borderRight};
+  border-bottom: ${props.borderBottom == null ? 'none' : props.borderBottom};
+  border-left: ${props.borderLeft == null ? 'none' : props.borderLeft};`
       : ''}
+
+  outline: none;
 
   &:focus {
     outline: none;

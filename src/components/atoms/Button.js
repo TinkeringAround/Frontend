@@ -50,9 +50,9 @@ const Button = styled.button`
 
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-  &:active {
-    box-shadow: 0px 0px 0px #fff;
-    transform: translateY(4px);
-  }
+  ${props =>
+    props.animated != null && props.animated
+      ? '&:active {box-shadow: 0px 0px 0px #fff; transform: translateY(4px);}'
+      : ''};
 `
 export default Button

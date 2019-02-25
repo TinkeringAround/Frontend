@@ -25,8 +25,9 @@ export default props => {
       position="fixed"
       top="0"
       zIndex="10"
-      borderBottom={'5px solid ' + Theme.colors.lightGrey}
+      borderBottom={'5px solid ' + Theme.colors.darkBlue}
       overflowY="hidden"
+      backgroundColor={Theme.colors.lightBlue}
     >
       <Flex height="60px" flexDirection="row" justifyContent="space-between" alignItems="center">
         {showBack ? (
@@ -34,6 +35,7 @@ export default props => {
             marginLeft="20px"
             width="40px"
             height="40px"
+            backgroundColor="transparent"
             onClick={() => {
               toActivities()
             }}
@@ -41,7 +43,7 @@ export default props => {
             <SVG
               width="40px"
               height="40px"
-              fill={Theme.colors.darkGrey}
+              fill={Theme.colors.white}
               viewBox={icons.getSVG('back').viewBox}
             >
               {icons.getSVG('back').path}
@@ -53,13 +55,14 @@ export default props => {
         <Button
           width="140px"
           height="40px"
-          backgroundColor={Theme.colors.lightBlue}
-          color={Theme.textColors.white}
+          backgroundColor={Theme.colors.white}
+          color={Theme.textColors.darkGrey}
           fontSize={Theme.fontSizes.medium}
           marginRight="20px"
           marginBottom="12px"
           borderRadius={Theme.borderRadius}
-          boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
+          boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
+          animated
           onClick={() => {
             toActivities()
             setTimeout(() => {

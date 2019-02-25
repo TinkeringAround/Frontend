@@ -34,8 +34,28 @@ const Progressbar = posed.div({
 
 //--------------------------------------------------------------------------//
 export default props => {
-  const { color, backgroundColor, percentage, showText } = props
+  const { percentage, styles, fullWidth, showText } = props
   const [pose, setPose] = useState('hidden')
+
+  const defaultStyles = {
+    height: styles != null && styles.height != null ? styles.height : '50px',
+    width: styles != null && styles.width != null ? styles.width : '100%',
+
+    borderRadius:
+      styles != null && styles.borderRadius != null ? styles.borderRadius : Theme.borderRadius,
+
+    color: styles != null && styles.color != null ? styles.color : Theme.colors.darkGreen,
+    backgroundColor:
+      styles != null && styles.backgroundColor != null
+        ? styles.backgroundColor
+        : Theme.colors.white,
+
+    textColor:
+      styles != null && styles.textColor != null ? styles.textColor : Theme.textColors.darkGrey,
+    fontSize: styles != null && styles.fontSize != null ? styles.fontSize : Theme.fontSizes.medium
+  }
+
+  console.log('PB-Width: ', defaultStyles.height)
 
   setTimeout(() => {
     setPose('rest')
@@ -49,26 +69,38 @@ export default props => {
   }, [percentage])
 
   return (
-    <Flex height="50px" width="100%" flexDirection="column" justifyContent="center">
+    <Flex
+      height={defaultStyles.height + (showText != null && showText ? 20 : 0)}
+      width={defaultStyles.width}
+      flexDirection="column"
+      justifyContent="center"
+      margin="0"
+    >
       {showText != null && showText ? (
         <Text
-          fontSize={Theme.fontSizes.xlarge}
-          color={Theme.textColors.darkGrey}
+          fontSize={defaultStyles.fontSize}
+          color={defaultStyles.textColor}
           textAlign="center"
+          marginBottom="5px"
         >
           {percentage + '% gelöst'}
         </Text>
       ) : (
         ''
       )}
-      <Box width="80%" height="20px" borderRadius="12px" backgroundColor={backgroundColor}>
+      <Box
+        width={fullWidth != null && fullWidth ? defaultStyles.width : '80%'}
+        height={defaultStyles.height}
+        borderRadius={defaultStyles.borderRadius}
+        backgroundColor={defaultStyles.backgroundColor}
+      >
         <Progressbar
           pose={pose}
           percentage={percentage + '%'}
           style={{
-            height: '20px',
-            borderRadius: '12px',
-            backgroundColor: color
+            height: defaultStyles.height,
+            borderRadius: defaultStyles.borderRadius,
+            backgroundColor: defaultStyles.color
           }}
         />
       </Box>

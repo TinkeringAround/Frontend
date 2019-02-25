@@ -36,7 +36,7 @@ const Page = posed.div({
     left: LEFT_RIGHT,
     transition: {
       left: {
-        duration: 50
+        duration: 1
       }
     }
   }

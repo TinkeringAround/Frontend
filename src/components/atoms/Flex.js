@@ -6,11 +6,19 @@ const Flex = styled.div`
   flex-direction: ${props => (props.flexDirection == null ? 'row' : props.flexDirection)};
   justify-content: ${props => (props.justifyContent == null ? 'center' : props.justifyContent)};
   align-items: ${props => (props.alignItems == null ? 'center' : props.alignItems)};
-
   flex-wrap: ${props => (props.flexWrap == null ? 'nowrap' : props.flexWrap)};
+
+
+  position: ${props => (props.position == null ? 'static' : props.position)};
+  top: ${props => (props.top == null ? 'auto' : props.top)};
+  left: ${props => (props.left == null ? 'auto' : props.left)};
+  bottom: ${props => (props.bottom == null ? 'auto' : props.bottom)};
+  right: ${props => (props.right == null ? 'auto' : props.right)};
+
 
   width: ${props => (props.width == null ? '100%' : props.width)};
   height: ${props => (props.height == null ? '100%' : props.height)};
+
 
   margin: ${props => (props.margin == null ? '0' : props.margin)};
   ${props =>
@@ -20,11 +28,8 @@ const Flex = styled.div`
   margin-bottom: ${props.marginBottom == null ? 'auto' : props.marginBottom};
   margin-left: ${props.marginLeft == null ? 'auto' : props.marginLeft};`
       : ''}
-  
-  background-color: ${props =>
-    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
 
-  padding: ${props => (props.padding == null ? '0' : props.padding)};
+padding: ${props => (props.padding == null ? '0' : props.padding)};
   ${props =>
     props.padding == null
       ? `padding-top: ${props.paddingTop == null ? 'auto' : props.paddingTop};
@@ -32,7 +37,12 @@ const Flex = styled.div`
   padding-bottom: ${props.paddingBottom == null ? 'auto' : props.paddingBottom};
   padding-left: ${props.paddingLeft == null ? 'auto' : props.paddingLeft};`
       : ''}
-      
+  
+
+  background-color: ${props =>
+    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
+ 
+ 
   overflow-y: ${props => (props.overflowY == null ? 'auto' : props.overflowY)};
   overflow-x: ${props => (props.overflowX == null ? 'auto' : props.overflowX)};
 `

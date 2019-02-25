@@ -60,7 +60,7 @@ export default () => {
             styles={{ width: '100%', height: 'auto', top: '60px' }}
           >
             <Flex
-              width="90%"
+              width="95%"
               flexDirection="column"
               justifyContent="flex-start"
               alignItems="center"
@@ -93,7 +93,17 @@ export default () => {
               alignItems="center"
             >
               {activity != null ? (
-                <Level activity={activity} play={playGame} />
+                <React.Fragment>
+                  <Text
+                    color={Theme.textColors.darkGrey}
+                    fontSize={Theme.fontSizes.xxxlarge}
+                    textAlign="center"
+                    marginBottom="10px"
+                  >
+                    Level und Rätsel
+                  </Text>
+                  <Level activity={activity} play={playGame} />
+                </React.Fragment>
               ) : (
                 <React.Fragment />
               )}

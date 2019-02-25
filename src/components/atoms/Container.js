@@ -39,11 +39,11 @@ const Container = styled.div`
   height: ${props => (props.height == null ? '100%' : props.height)};
 
   background-color: ${props =>
-    props.backgroundColor == null ? props.theme.colors.white : props.backgroundColor};
+    props.backgroundColor == null ? 'transparent' : props.backgroundColor};
 
   overflow-y: ${props => (props.overflowY == null ? 'auto' : props.overflowY)};
   overflow-x: ${props => (props.overflowX == null ? 'auto' : props.overflowX)};
 
-  z-index: ${props => (props.zIndex == null ? '1' : props.zIndex)};
+  z-index: ${props => (props.zIndex == null ? '0' : props.zIndex)};
 `
 export default Container
