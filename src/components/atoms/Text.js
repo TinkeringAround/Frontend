@@ -25,9 +25,15 @@ const Text = styled.p`
   padding-left: ${props.paddingLeft == null ? 'auto' : props.paddingLeft};`
       : ''}
 
+  font-family: ${props =>
+    props.fontFamily == null ? props.theme.fonts.default : props.fontFamily};
   font-size: ${props => (props.fontSize == null ? props.theme.fontSizes.default : props.fontSize)};
+
   letter-spacing: ${props =>
     props.letterSpacing == null ? props.theme.letterSpacing : props.letterSpacing};
+    line-height: ${props => (props.lineHeight == null ? props.theme.lineHeight : props.lineHeight)};
   text-align: ${props => (props.textAlign == null ? 'left' : props.textAlign)};
+
+  overflow-wrap: ${props => (props.overflowWrap == null ? 'normal' : props.overflowWrap)};
 `
 export default Text

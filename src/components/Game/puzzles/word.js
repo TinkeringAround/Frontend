@@ -12,10 +12,16 @@ export default props => {
 
   return (
     <Text
-      margin="75px auto"
+      width="90%"
+      height="auto"
+      margin="auto"
       textAlign="center"
-      fontSize={Theme.fontSizes.xxxxlarge}
+      fontFamily={Theme.fonts.mono}
+      fontSize={Theme.fontSizes.xxxlarge}
       color={Theme.textColors.darkGrey}
+      letterSpacing="5px"
+      lineHeight="1.2"
+      overflowWrap="break-word"
     >
       {stage.puzzle.task}
     </Text>

@@ -26,7 +26,8 @@ const Button = styled.button`
   color: ${props => (props.color == null ? props.theme.textColors.whiteText : props.color)};
 
   font-size: ${props => (props.fontSize == null ? props.theme.fontSizes.normal : props.fontSize)};
-  font-family: ${props => (props.fontFamily == null ? props.theme.fontFamily : props.fontFamily)};
+  font-family: ${props =>
+    props.fontFamily == null ? props.theme.fonts.default : props.fontFamily};
   text-align: ${props => (props.textAlign == null ? 'center' : props.textAlign)};
   letter-spacing: ${props =>
     props.letterSpacing == null ? props.theme.letterSpacing : props.letterSpacing};
@@ -46,8 +47,9 @@ const Button = styled.button`
   border-radius: ${props => (props.borderRadius == null ? '0' : props.borderRadius)};
   box-shadow: ${props => (props.boxShadow == null ? '0' : props.boxShadow)};
 
-  outline: none;
+  z-index: ${props => (props.zIndex == null ? '0' : props.zIndex)};
 
+  outline: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   ${props =>

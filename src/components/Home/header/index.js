@@ -16,7 +16,8 @@ import icons from '../../../assets/icons'
 //--------------------------------------------------------------------------//
 export default props => {
   const appContext = useContext(AppContext)
-  const { showBack, toActivities } = props
+  const { activity, setActivity } = appContext
+  const { setLoading } = props
 
   return (
     <Container
@@ -30,14 +31,14 @@ export default props => {
       backgroundColor={Theme.colors.lightBlue}
     >
       <Flex height="60px" flexDirection="row" justifyContent="space-between" alignItems="center">
-        {showBack ? (
+        {activity != null ? (
           <Button
             marginLeft="20px"
             width="40px"
             height="40px"
             backgroundColor="transparent"
             onClick={() => {
-              toActivities()
+              setActivity(null)
             }}
           >
             <SVG
@@ -64,9 +65,9 @@ export default props => {
           boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
           animated
           onClick={() => {
-            toActivities()
             setTimeout(() => {
               appContext.logout()
+              setLoading(true)
             }, 250)
           }}
         >

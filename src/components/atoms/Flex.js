@@ -10,10 +10,13 @@ const Flex = styled.div`
 
 
   position: ${props => (props.position == null ? 'static' : props.position)};
-  top: ${props => (props.top == null ? 'auto' : props.top)};
-  left: ${props => (props.left == null ? 'auto' : props.left)};
-  bottom: ${props => (props.bottom == null ? 'auto' : props.bottom)};
-  right: ${props => (props.right == null ? 'auto' : props.right)};
+  ${props =>
+    props.position != null
+      ? `  top: ${props.top == null ? 'auto' : props.top};
+  left: ${props.left == null ? 'auto' : props.left};
+  bottom: ${props.bottom == null ? 'auto' : props.bottom};
+  right: ${props.right == null ? 'auto' : props.right};`
+      : ''}
 
 
   width: ${props => (props.width == null ? '100%' : props.width)};

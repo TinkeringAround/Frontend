@@ -26,7 +26,8 @@ const Textfield = styled.input`
       : ''}
 
   font-size: ${props => (props.fontSize == null ? props.theme.fontSizes.normal : props.fontSize)};
-  font-family: ${props => (props.fontFamily == null ? props.theme.fontFamily : props.fontFamily)};
+  font-family: ${props =>
+    props.fontFamily == null ? props.theme.fonts.default : props.fontFamily};
   text-align: ${props => (props.textAlign == null ? 'center' : props.textAlign)};
   letter-spacing: ${props =>
     props.letterSpacing == null ? props.theme.letterSpacing : props.letterSpacing};

@@ -17,6 +17,9 @@ import Login from './components/Login'
 import Home from './components/Home'
 import Game from './components/Game'
 
+// Mock
+import mock from './mock'
+
 const Pagestyles = {
   top: '0px',
   width: '100%',
@@ -26,61 +29,70 @@ const Pagestyles = {
 
 //-------------------------------------------------------------------------//
 const App = () => {
-  const [userData, setUserData] = useState(null)
+  const [user, setUser] = useState(null)
+  const [activity, setActivity] = useState(null)
   const [stage, setStage] = useState(null)
-  const isLarge = useMedia(['(min-width: 800px)'], [true], false)
+  const isLarge = useMedia(['(min-width: 465px)'], [true], false)
 
   // Initial Setup
-  if (userData == null) {
-    const data = Cookie.load('userData')
+  if (user == null) {
+    const data = Cookie.load('user')
     if (data != null && data.hasOwnProperty('userID')) {
       setTimeout(() => {
-        setUserData(data)
+        setUser(mock)
       }, 1000)
     }
   }
 
   const login = data => {
-    Cookie.save('userData', data, { path: '/' })
-    setUserData(data)
+    Cookie.save('user', data, { path: '/' })
+    setUser(mock)
   }
 
   const logout = () => {
     // save everything via API
-    Cookie.remove('userData')
+    Cookie.remove('user')
+
     setStage(null)
-    setUserData(null)
+    setActivity(null)
+    setUser(null)
   }
 
-  console.log('UserData: ', userData)
-  console.log('Stage: ', stage)
+  console.log('user: ', user)
+  console.log('activity: ', activity)
+  console.log('stage: ', stage)
 
   return (
     <AppContext.Provider
       value={{
+        user: user,
+        activity: activity,
+        stage: stage,
         login: data => {
           login(data)
         },
         logout: () => {
           logout()
         },
+        setActivity: activity => {
+          setActivity(activity)
+        },
         setStage: stage => {
           setStage(stage)
-        },
-        user: userData
+        }
       }}
     >
       <ThemeProvider theme={Theme}>
         {!isLarge ? (
           <React.Fragment>
-            <Page styles={Pagestyles} animate={userData == null}>
+            <Page styles={Pagestyles} animate={user == null}>
               <Login />
             </Page>
-            <Page styles={Pagestyles} animate={userData != null && stage == null}>
+            <Page styles={Pagestyles} animate={user != null && stage == null}>
               <Home />
             </Page>
-            <Page styles={Pagestyles} animate={userData != null && stage != null}>
-              <Game stage={stage} />
+            <Page styles={Pagestyles} animate={user != null && stage != null}>
+              <Game />
             </Page>
           </React.Fragment>
         ) : (

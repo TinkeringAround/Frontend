@@ -5,6 +5,15 @@ const Box = styled.div`
   width: ${props => (props.width == null ? 'auto' : props.width)};
   height: ${props => (props.height == null ? 'auto' : props.height)};
 
+  position: ${props => (props.position == null ? 'static' : props.position)};
+  ${props =>
+    props.position != null
+      ? `  top: ${props.top == null ? 'auto' : props.top};
+  left: ${props.left == null ? 'auto' : props.left};
+  bottom: ${props.bottom == null ? 'auto' : props.bottom};
+  right: ${props.right == null ? 'auto' : props.right};`
+      : ''}
+
   margin: ${props => (props.margin == null ? 'auto' : props.margin)};
   ${props =>
     props.margin == null

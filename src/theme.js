@@ -20,13 +20,18 @@ const theme = {
   borderRadius: '50px',
 
   // Font
-  fontFamily: 'Arial Rounded MT Bold',
+  fonts: {
+    mono: 'Roboto Mono',
+    default: 'Arial Rounded MT Bold',
+    greek: 'Ancient Greek'
+  },
 
   // Text Colors
   textColors: {
     white: '#FFF',
     lightGrey: '#C4C4C4',
-    darkGrey: '#555'
+    darkGrey: '#555',
+    darkGreen: '#4ABE5D'
   },
 
   // Text sizes
@@ -44,7 +49,7 @@ const theme = {
 
   // Spacings
   letterSpacing: '1px',
-  letterHeight: '1.2'
+  lineHeight: '1.2'
 }
 
 export default theme

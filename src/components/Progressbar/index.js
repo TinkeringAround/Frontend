@@ -55,8 +55,6 @@ export default props => {
     fontSize: styles != null && styles.fontSize != null ? styles.fontSize : Theme.fontSizes.medium
   }
 
-  console.log('PB-Width: ', defaultStyles.height)
-
   setTimeout(() => {
     setPose('rest')
   }, 250)

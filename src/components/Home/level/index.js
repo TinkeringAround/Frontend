@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+// Context
+import AppContext from '../../../context/app-context'
 
 // Theme
 import Theme from '../../../theme'
@@ -16,9 +19,11 @@ import Box from '../../atoms/Box'
 
 //--------------------------------------------------------------------------//
 export default props => {
-  const { activity, play } = props
+  const appContext = useContext(AppContext)
+  const { activity, setStage } = appContext
   const { game, achievements } = activity
   const { levels, meta } = game
+  const { setLoading } = props
 
   return levels.map((level, levelIndex) => {
     const date = new Date(meta.startDate.getTime() + levelIndex * (24 * 60 * 60 * 1000))
@@ -80,7 +85,15 @@ export default props => {
                       margin="auto"
                       backgroundColor={solved ? Theme.colors.yellow : Theme.colors.lightGrey}
                       borderRadius="100px"
-                      onClick={() => play(activity, levelIndex, stageIndex)}
+                      onClick={() => {
+                        setLoading(true)
+                        setStage({
+                          stage: activity.game.levels[levelIndex].stages[stageIndex],
+                          levelIndex: levelIndex,
+                          stageIndex: stageIndex,
+                          solved: solved
+                        })
+                      }}
                     >
                       <Box
                         width="85%"
@@ -111,5 +124,3 @@ export default props => {
     )
   })
 }
-
-//

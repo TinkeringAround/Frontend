@@ -17,46 +17,27 @@ import Spinner from '../Spinner/'
 import Activity from './activity'
 import Level from './level'
 
-// Mock
-import userData from './mock'
-
 //--------------------------------------------------------------------------//
 export default () => {
   const appContext = useContext(AppContext)
-  const [activities, setActivities] = useState(null)
+  const { user, activity, stage } = appContext
   const [loading, setLoading] = useState(true)
-  const [activity, setActivity] = useState(null)
 
-  if (appContext.user != null && appContext.user.hasOwnProperty('userID')) {
-    // fetch activity data
+  if (user != null && stage == null) {
     setTimeout(() => {
-      setActivities(userData.activities)
       setLoading(false)
     }, 1000)
   }
 
-  const toLevels = activity => {
-    setActivity(activity)
-  }
-
-  const toActivities = () => {
-    setActivity(null)
-  }
-
-  const playGame = (activity, levelIndex, stageIndex) => {
-    appContext.setStage(activity.game.levels[levelIndex].stages[stageIndex])
-    setActivity(null)
-  }
-
   return (
     <React.Fragment>
-      <Header showBack={activity != null} toActivities={toActivities} />
+      <Header setLoading={setLoading} />
       {loading ? (
         <Spinner />
       ) : (
         <React.Fragment>
           <Wrapper
-            animate={activity == null}
+            animate={user != null && activity == null && stage == null}
             styles={{ width: '100%', height: 'auto', top: '60px' }}
           >
             <Flex
@@ -74,14 +55,17 @@ export default () => {
               >
                 Aktivitäten
               </Text>
-
-              {activities.map((activity, index) => {
-                return <Activity key={index} activity={activity} toLevels={toLevels} />
-              })}
+              {user != null ? (
+                user.activities.map((activity, index) => {
+                  return <Activity key={index} activity={activity} />
+                })
+              ) : (
+                <React.Fragment />
+              )}
             </Flex>
           </Wrapper>
           <Wrapper
-            animate={activity != null}
+            animate={user != null && activity != null && stage == null}
             styles={{ width: '100%', height: 'auto', top: '60px' }}
           >
             <Flex
@@ -102,7 +86,7 @@ export default () => {
                   >
                     Level und Rätsel
                   </Text>
-                  <Level activity={activity} play={playGame} />
+                  <Level setLoading={setLoading} />
                 </React.Fragment>
               ) : (
                 <React.Fragment />

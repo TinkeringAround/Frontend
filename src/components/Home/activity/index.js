@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+// Context
+import AppContext from '../../../context/app-context'
 
 // Theme
 import Theme from '../../../theme'
@@ -18,7 +21,9 @@ import Icons from '../../../assets/icons'
 
 //--------------------------------------------------------------------------//
 export default props => {
-  const { activity, toLevels } = props
+  const appContext = useContext(AppContext)
+  const { setActivity } = appContext
+  const { activity } = props
 
   const countPuzzles = activity => {
     let puzzles = 0
@@ -62,7 +67,7 @@ export default props => {
         backgroundColor={Theme.colors.white}
         borderRadius="0 12px 12px 0"
         onClick={() => {
-          toLevels(activity)
+          setActivity(activity)
         }}
       >
         <Flex

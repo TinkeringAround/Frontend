@@ -3,10 +3,13 @@ import styled from 'styled-components'
 //-------------------------------------------------------------------------//
 const SVG = styled.svg`
   position: ${props => (props.position == null ? 'static' : props.position)};
-  top: ${props => (props.top == null ? 'auto' : props.top)};
-  left: ${props => (props.left == null ? 'auto' : props.left)};
-  bottom: ${props => (props.bottom == null ? 'auto' : props.bottom)};
-  right: ${props => (props.right == null ? 'auto' : props.right)};
+  ${props =>
+    props.position != null
+      ? `  top: ${props.top == null ? 'auto' : props.top};
+  left: ${props.left == null ? 'auto' : props.left};
+  bottom: ${props.bottom == null ? 'auto' : props.bottom};
+  right: ${props.right == null ? 'auto' : props.right};`
+      : ''}
 
   margin: ${props => (props.margin == null ? '0' : props.margin)};
   ${props =>
@@ -32,5 +35,7 @@ const SVG = styled.svg`
   fill: ${props => (props.fill == null ? '#000' : props.fill)};
   stroke:  ${props => (props.stroke == null ? 'none' : props.stroke)};
   stroke-width: ${props => (props.strokeWidth == null ? '0' : props.strokeWidth)};
+
+  z-index: ${props => (props.zIndex == null ? '0' : props.zIndex)};
 `
 export default SVG
