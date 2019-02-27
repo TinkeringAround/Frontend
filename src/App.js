@@ -33,6 +33,7 @@ const App = () => {
   const [activity, setActivity] = useState(null)
   const [stage, setStage] = useState(null)
   const isLarge = useMedia(['(min-width: 465px)'], [true], false)
+  const isSmall = useMedia(['(max-width: 360px)'], [true], false)
 
   // Initial Setup
   if (user == null) {
@@ -83,7 +84,7 @@ const App = () => {
       }}
     >
       <ThemeProvider theme={Theme}>
-        {!isLarge ? (
+        {!isLarge && !isSmall ? (
           <React.Fragment>
             <Page styles={Pagestyles} animate={user == null}>
               <Login />
@@ -96,8 +97,15 @@ const App = () => {
             </Page>
           </React.Fragment>
         ) : (
-          <h1 style={{ margin: '300px auto', textAlign: 'center' }}>
-            Diese App ist nur für Mobile ausgelegt.
+          <h1
+            style={{
+              fontSize: isSmall ? '18px' : '25px',
+              margin: isSmall ? '225px auto' : '300px auto',
+              textAlign: 'center'
+            }}
+          >
+            Diese App ist nur für Mobile ausgelegt mit einer min. Weite von 350px und einer max.
+            Weite von 465px.
           </h1>
         )}
       </ThemeProvider>

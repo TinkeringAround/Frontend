@@ -22,69 +22,81 @@ const userData = {
           startDate: new Date(2019, 1, 15)
         },
         levels: [
-          {
-            stages: [
-              {
-                type: 'text',
-                task: 'Was ist rot, rund und gesund?',
-                solution: 'Apfel',
-                hint: ''
-              },
-              {
-                type: 'text',
-                task: 'Was ist rot, rund und gesund?',
-                solution: 'Apfel',
-                hint: ''
-              }
-            ]
-          },
-          {
-            stages: [
-              {
-                type: 'matrix',
-                task: '',
-                solution: '11,24,33,52',
-                hint: 'Unter dem Kühlschrank'
-              },
-              {
-                type: 'matrix',
-                task: '',
-                solution: '11,24,33,52',
-                hint: 'Unter dem Kühlschrank'
-              }
-            ]
-          },
-          {
-            stages: [
-              {
-                type: 'word',
-                task:
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                solution: 'ABC',
-                hint: 'Box im Arbeitszimmer'
-              },
-              {
-                type: 'word',
-                task:
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                solution: 'ABC',
-                hint: 'Box im Arbeitszimmer'
-              }
-            ]
-          }
+          [
+            {
+              type: 'text',
+              task: 'Was ist rot, rund und gesund?',
+              help: 'Ganz einfach, beantworte die Frage.',
+              solution: 'Apfel',
+              hint: ''
+            },
+            {
+              type: 'text',
+              task: 'Was ist rot, rund und gesund?',
+              help: 'Ganz einfach, beantworte die Frage.',
+              solution: 'Apfel',
+              hint: ''
+            }
+          ],
+          [
+            {
+              type: 'matrix',
+              task: '',
+              help:
+                'Betätige alle richtigen Schalter. Sollte ein falscher Betätigt sein, öffnet sich das Schloss nicht.',
+              solution: '11,24,33,52',
+              hint: 'Unter dem Kühlschrank'
+            },
+            {
+              type: 'matrix',
+              task: '',
+              help:
+                'Betätige alle richtigen Schalter. Sollte ein falscher Betätigt sein, öffnet sich das Schloss nicht.',
+              solution: '11,24,33,52',
+              hint: 'Unter dem Kühlschrank'
+            }
+          ],
+          [
+            {
+              type: 'word',
+              task:
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
+              help:
+                'Das ist aber ein Wortsalat. Deine Aufgabe ist es das Schlüsselwort zu suchen, dabei kann es auch diagonal und von unten nach oben geschrieben sein.',
+              solution: 'ABC',
+              hint: 'Box im Arbeitszimmer'
+            },
+            {
+              type: 'word',
+              task:
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
+              help:
+                'Das ist aber ein Wortsalat. Deine Aufgabe ist es das Schlüsselwort zu suchen, dabei kann es auch diagonal und von unten nach oben geschrieben sein.',
+              solution: 'ABC',
+              hint: 'Box im Arbeitszimmer'
+            }
+          ],
+          [
+            {
+              type: 'circle',
+              task: '',
+              help:
+                'Betätige die Schalter in der richtigen Reihenfolge. Es sind insgesamt 4 Schalter zu betätigen.',
+              solution: '0,A,3,7',
+              hint: 'The Witcher'
+            },
+            {
+              type: 'circle',
+              task: '',
+              help:
+                'Betätige die Schalter in der richtigen Reihenfolge. Es sind insgesamt 4 Schalter zu betätigen.',
+              solution: '0,A,3,7',
+              hint: 'The Witcher'
+            }
+          ]
         ]
       },
-      achievements: [
-        {
-          forLevels: ['Apfel', '']
-        },
-        {
-          forLevels: ['11,24,33,52', '']
-        },
-        {
-          forLevels: ['ABC', '']
-        }
-      ]
+      achievements: [['Apfel', ''], ['11,24,33,52', ''], ['ABC', ''], ['0,A,3,7', '']]
     }
   ]
 }

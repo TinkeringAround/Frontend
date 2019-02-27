@@ -17,7 +17,12 @@ const theme = {
     darkGreen: '#4ABE5D'
   },
 
-  borderRadius: '50px',
+  borderRadius: {
+    small: '12px',
+    medium: '25px',
+    large: '50px',
+    huge: '100px'
+  },
 
   // Fonts
   fonts: {

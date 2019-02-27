@@ -5,25 +5,34 @@ import Theme from '../../../theme'
 
 // Atoms
 import Text from '../../atoms/Text'
+import Flex from '../../atoms/Flex'
 
 //--------------------------------------------------------------------------//
 export default props => {
   const { stage } = props
 
   return (
-    <Text
+    <Flex
       width="90%"
-      height="auto"
-      margin="auto"
-      textAlign="center"
-      fontFamily={Theme.fonts.mono}
-      fontSize={Theme.fontSizes.xxxlarge}
-      color={Theme.textColors.darkGrey}
-      letterSpacing="5px"
-      lineHeight={Theme.lineHeight}
-      overflowWrap="break-word"
+      height="100%"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
     >
-      {stage.task}
-    </Text>
+      <Text
+        width="90%"
+        height="auto"
+        margin="auto"
+        textAlign="center"
+        fontFamily={Theme.fonts.mono}
+        fontSize={Theme.fontSizes.xxxlarge}
+        color={Theme.textColors.darkGrey}
+        letterSpacing="5px"
+        lineHeight={Theme.lineHeight}
+        overflowWrap="break-word"
+      >
+        {stage.task}
+      </Text>
+    </Flex>
   )
 }

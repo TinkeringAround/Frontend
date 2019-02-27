@@ -64,7 +64,7 @@ export default () => {
             width="85%"
             height="110px"
             border={'5px solid ' + Theme.colors.lightGrey}
-            borderRadius="12px"
+            borderRadius={Theme.borderRadius.small}
             margin="0 auto 40px auto"
           >
             <Flex flexDirection="column" justifyContent="space-evenly" alignItems="strech">
@@ -104,7 +104,7 @@ export default () => {
             color={Theme.textColors.white}
             backgroundColor={Theme.colors.lightBlue}
             margin="0 auto"
-            borderRadius={Theme.borderRadius}
+            borderRadius={Theme.borderRadius.small}
             boxShadow={'0 5px 0 ' + Theme.colors.darkBlue}
             fontSize={Theme.fontSizes.xxlarge}
             onClick={login}

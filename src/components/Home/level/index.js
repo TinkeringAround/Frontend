@@ -34,7 +34,7 @@ export default props => {
     return (
       <Container
         key={'Game-' + levelIndex}
-        height={150 + 150 * parseInt((level.stages.length - 1) / 2) + 'px'}
+        height={150 + 150 * parseInt((level.length - 1) / 2) + 'px'}
         backgroundColor={Theme.colors.white}
         marginTop="20px"
         marginBottom="10px"
@@ -48,8 +48,8 @@ export default props => {
             {date.getDate() + '.' + date.toLocaleString('de', { month: 'long' })}
           </Text>
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
-            {level.stages.map((stage, stageIndex) => {
-              const solved = stage.solution === achievements[levelIndex].forLevels[stageIndex]
+            {level.map((stage, stageIndex) => {
+              const solved = stage.solution === achievements[levelIndex][stageIndex]
               const svg = icons.getSVG(stage.type)
 
               return (
@@ -81,11 +81,11 @@ export default props => {
                       height="90%"
                       margin="auto"
                       backgroundColor={solved ? Theme.colors.yellow : Theme.colors.lightGrey}
-                      borderRadius="100px"
+                      borderRadius={Theme.borderRadius.huge}
                       onClick={() => {
                         setLoading(true)
                         setStage({
-                          data: activity.game.levels[levelIndex].stages[stageIndex],
+                          data: activity.game.levels[levelIndex][stageIndex],
                           levelIndex: levelIndex,
                           stageIndex: stageIndex,
                           solved: solved
@@ -95,7 +95,7 @@ export default props => {
                       <Box
                         width="85%"
                         height="85%"
-                        borderRadius="100px"
+                        borderRadius={Theme.borderRadius.huge}
                         backgroundColor={Theme.colors.white}
                       >
                         <Flex justifyContent="center" alignItems="center">

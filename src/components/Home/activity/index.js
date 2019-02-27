@@ -28,7 +28,7 @@ export default props => {
   const countStages = activity => {
     let stages = 0
     activity.game.levels.forEach(level => {
-      stages = stages + level.stages.length
+      stages = stages + level.length
     })
     return stages
   }
@@ -42,9 +42,9 @@ export default props => {
       total = 0
 
     game.levels.forEach((level, index) => {
-      level.stages.forEach((stage, stageIndex) => {
+      level.forEach((stage, stageIndex) => {
         total = total + 1
-        if (stage.solution === achievements[index].forLevels[stageIndex]) solved = solved + 1
+        if (stage.solution === achievements[index][stageIndex]) solved = solved + 1
       })
     })
 
@@ -57,7 +57,7 @@ export default props => {
       height="95%"
       width="95%"
       margin="20px 10px"
-      borderRadius="12px"
+      borderRadius={Theme.borderRadius.small}
       boxShadow="0px 0px 10px 1px rgba(0,0,0,0.15)"
     >
       <Button
@@ -65,7 +65,7 @@ export default props => {
         width="95%"
         height="auto"
         backgroundColor={Theme.colors.white}
-        borderRadius="0 12px 12px 0"
+        borderRadius={`0px ${Theme.borderRadius.small} ${Theme.borderRadius.small} 0px`}
         onClick={() => {
           setActivity(activity)
         }}

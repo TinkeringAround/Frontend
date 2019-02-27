@@ -61,7 +61,7 @@ export default props => {
           fontSize={Theme.fontSizes.medium}
           marginRight="20px"
           marginBottom="12px"
-          borderRadius={Theme.borderRadius}
+          borderRadius={Theme.borderRadius.small}
           boxShadow={'0 5px 0 ' + Theme.colors.darkGrey}
           animated
           onClick={() => {

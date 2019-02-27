@@ -42,7 +42,9 @@ export default props => {
     width: styles != null && styles.width != null ? styles.width : '100%',
 
     borderRadius:
-      styles != null && styles.borderRadius != null ? styles.borderRadius : Theme.borderRadius,
+      styles != null && styles.borderRadius != null
+        ? styles.borderRadius
+        : Theme.borderRadius.small,
 
     color: styles != null && styles.color != null ? styles.color : Theme.colors.darkGreen,
     backgroundColor:

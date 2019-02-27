@@ -22,6 +22,7 @@ import TextPuzzle from './puzzles/text'
 import MatrixPuzzle from './puzzles/matrix'
 import WordPuzzle from './puzzles/word'
 import CirclePuzzle from './puzzles/circle'
+import Modal from './modal'
 
 //--------------------------------------------------------------------------//
 export default () => {
@@ -32,6 +33,14 @@ export default () => {
   const [error, setError] = useState(false)
   const [showHint, setShowHint] = useState(false)
   const [textSolution, setTextSolution] = useState(true)
+  const [showHelp, setShowHelp] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  if (loading && stage != null) {
+    setTimeout(() => {
+      setLoading(false)
+    }, 200)
+  }
 
   const saveAndExit = () => {
     // if solution is correct => showHint === true
@@ -39,20 +48,13 @@ export default () => {
       // save
     }
     // then exit
-    setTextSolution(true)
-    setSolution('')
-    setPercentage(10)
     setShowHint(false)
+    setPercentage(10)
+    setSolution('')
+    setTextSolution(true)
     setStage(null)
     setActivity(null)
-  }
-
-  if (stage != null) console.log('Stage', stage)
-
-  if (stage != null && stage.solved) {
-    setTimeout(() => {
-      gameIsSolved()
-    }, 1250)
+    setLoading(true)
   }
 
   const gameIsSolved = () => {
@@ -84,6 +86,7 @@ export default () => {
         component = (
           <CirclePuzzle stage={stage.data} solved={stage.solved} gameIsSolved={gameIsSolved} />
         )
+        if (textSolution) setTextSolution(false)
         break
       }
       default: {
@@ -92,22 +95,24 @@ export default () => {
     }
   }
 
+  if (stage != null && stage.solved && percentage !== 100) {
+    gameIsSolved()
+  }
+
   return (
     <React.Fragment>
-      {stage != null ? (
+      {loading ? (
+        <React.Fragment />
+      ) : stage != null ? (
         <React.Fragment>
+          {showHelp && !showHint && percentage !== 100 ? (
+            <Modal helpText={stage.data.help} setShowHelp={setShowHelp} />
+          ) : (
+            <React.Fragment />
+          )}
           <Container height="10%" width="100%" position="absolute" top="0px" left="0px">
             <Flex width="100%" height="100%" justifyContent="flex-start" alignItems="center">
-              <Progressbar
-                styles={{
-                  height: '20px',
-                  color: Theme.colors.darkGreen,
-                  backgroundColor: Theme.colors.lightGrey,
-                  borderRadius: '12px'
-                }}
-                percentage={percentage}
-              />
-              <Button marginRight="20px" width="40px" height="40px" onClick={saveAndExit}>
+              <Button margin="0 20px" width="40px" height="40px" onClick={saveAndExit}>
                 <SVG
                   width="40px"
                   height="40px"
@@ -117,18 +122,34 @@ export default () => {
                   {icons.getSVG('close').path}
                 </SVG>
               </Button>
+              <Progressbar
+                fullWidth
+                styles={{
+                  height: '20px',
+                  color: Theme.colors.darkGreen,
+                  backgroundColor: Theme.colors.lightGrey
+                }}
+                percentage={percentage}
+              />
+              <Button
+                margin="0 20px"
+                width="40px"
+                height="40px"
+                onClick={() => setShowHelp(!showHelp)}
+              >
+                <SVG
+                  width="30px"
+                  height="30px"
+                  fill={!showHint ? Theme.colors.darkGrey : Theme.colors.lightGrey}
+                  viewBox={icons.getSVG('help').viewBox}
+                >
+                  {icons.getSVG('help').path}
+                </SVG>
+              </Button>
             </Flex>
           </Container>
           <Container height="65%" width="100%" position="absolute" top="10%" left="0px">
-            <Flex
-              width="90%"
-              height="100%"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-            >
-              {component}
-            </Flex>
+            {component}
           </Container>
           <Container position="absolute" bottom="0px" left="0px" height="25%" width="100%">
             <Flex
@@ -171,7 +192,7 @@ export default () => {
                   color={Theme.textColors.white}
                   backgroundColor={Theme.colors.lightGreen}
                   margin="30px auto"
-                  borderRadius={Theme.borderRadius}
+                  borderRadius={Theme.borderRadius.small}
                   boxShadow={'0 5px 0 ' + Theme.colors.darkGreen}
                   fontSize={Theme.fontSizes.xxlarge}
                   zIndex="2"
@@ -199,7 +220,7 @@ export default () => {
                   width="100%"
                   height="100%"
                   zIndex="1"
-                  borderRadius="12px 12px 0px 0px"
+                  borderRadius={`${Theme.borderRadius.small} ${Theme.borderRadius.small} 0px 0px`}
                   backgroundColor={Theme.colors.overlay}
                 >
                   <Flex
@@ -218,7 +239,7 @@ export default () => {
                     >
                       {stage.data.hint !== ''
                         ? 'Der nächste Hinweis:'
-                        : 'Toll, das Rätsel ist gelöst!'}
+                        : 'Toll, du hast das Rätsel gelöst!'}
                     </Text>
                     {stage.data.hint !== '' ? (
                       <Text

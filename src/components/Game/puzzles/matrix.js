@@ -6,11 +6,13 @@ import Theme from '../../../theme'
 import Grid from '../../atoms/Grid'
 import Child from '../../atoms/GridChild'
 import Button from '../../atoms/Button'
+import Flex from '../../atoms/Flex'
 
 //--------------------------------------------------------------------------//
 export default props => {
   const { stage, solved, gameIsSolved } = props
   const [splitSolutions] = useState(stage.solution.split(','))
+
   const [playground, setPlayground] = useState(() => {
     let pg = []
     for (let row = 0; row <= 6; row++) {
@@ -18,7 +20,7 @@ export default props => {
     }
     return pg
   })
-  const [tmpSolution, settmpSolution] = useState(() => {
+  const [tmpSolution, setTmpSolution] = useState(() => {
     let solution = []
 
     splitSolutions.forEach(item => {
@@ -66,7 +68,7 @@ export default props => {
     const tmp = Array.from(tmpSolution)
     tmp[mark] = !tmp[mark]
 
-    settmpSolution(tmp)
+    setTmpSolution(tmp)
   }
 
   const markIsPartOfSolution = mark => {
@@ -79,9 +81,9 @@ export default props => {
     return (
       <Child>
         <Button
-          width="60%"
-          height="75%"
-          borderRadius="50px"
+          width="45px"
+          height="45px"
+          borderRadius={Theme.borderRadius.large}
           backgroundColor={
             finished && markIsPartOfSolution(mark)
               ? Theme.colors.darkGreen
@@ -105,148 +107,156 @@ export default props => {
   }
 
   return (
-    <Grid
-      gridTemplateColumns={gridTemplateColums}
-      gridTemplateRows={gridTemplateRows}
-      backgroundColor="transparent"
+    <Flex
       width="90%"
-      height="90%"
+      height="100%"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
     >
-      <Child />
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-        >
-          A
-        </Text>
-      </Child>
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-        >
-          B
-        </Text>
-      </Child>
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-        >
-          C
-        </Text>
-      </Child>
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-        >
-          D
-        </Text>
-      </Child>
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          E
-        </Text>
-      </Child>
-      {renderChild(1, 1)}
-      {renderChild(1, 2)}
-      {renderChild(1, 3)}
-      {renderChild(1, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          F
-        </Text>
-      </Child>
-      {renderChild(2, 1)}
-      {renderChild(2, 2)}
-      {renderChild(2, 3)}
-      {renderChild(2, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          G
-        </Text>
-      </Child>
-      {renderChild(3, 1)}
-      {renderChild(3, 2)}
-      {renderChild(3, 3)}
-      {renderChild(3, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          H
-        </Text>
-      </Child>
-      {renderChild(4, 1)}
-      {renderChild(4, 2)}
-      {renderChild(4, 3)}
-      {renderChild(4, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          I
-        </Text>
-      </Child>
-      {renderChild(5, 1)}
-      {renderChild(5, 2)}
-      {renderChild(5, 3)}
-      {renderChild(5, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          J
-        </Text>
-      </Child>
-      {renderChild(6, 1)}
-      {renderChild(6, 2)}
-      {renderChild(6, 3)}
-      {renderChild(6, 4)}
-      <Child>
-        <Text
-          fontSize={Theme.fontSizes.xxxlarge}
-          fontFamily={Theme.fonts.greek}
-          color={Theme.textColors.darkGrey}
-          textAlign="right"
-        >
-          K
-        </Text>
-      </Child>
-      {renderChild(7, 1)}
-      {renderChild(7, 2)}
-      {renderChild(7, 3)}
-      {renderChild(7, 4)}
-    </Grid>
+      <Grid
+        gridTemplateColumns={gridTemplateColums}
+        gridTemplateRows={gridTemplateRows}
+        backgroundColor="transparent"
+        width="90%"
+        height="90%"
+      >
+        <Child />
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+          >
+            A
+          </Text>
+        </Child>
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+          >
+            B
+          </Text>
+        </Child>
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+          >
+            C
+          </Text>
+        </Child>
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+          >
+            D
+          </Text>
+        </Child>
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            E
+          </Text>
+        </Child>
+        {renderChild(1, 1)}
+        {renderChild(1, 2)}
+        {renderChild(1, 3)}
+        {renderChild(1, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            F
+          </Text>
+        </Child>
+        {renderChild(2, 1)}
+        {renderChild(2, 2)}
+        {renderChild(2, 3)}
+        {renderChild(2, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            G
+          </Text>
+        </Child>
+        {renderChild(3, 1)}
+        {renderChild(3, 2)}
+        {renderChild(3, 3)}
+        {renderChild(3, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            H
+          </Text>
+        </Child>
+        {renderChild(4, 1)}
+        {renderChild(4, 2)}
+        {renderChild(4, 3)}
+        {renderChild(4, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            I
+          </Text>
+        </Child>
+        {renderChild(5, 1)}
+        {renderChild(5, 2)}
+        {renderChild(5, 3)}
+        {renderChild(5, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            J
+          </Text>
+        </Child>
+        {renderChild(6, 1)}
+        {renderChild(6, 2)}
+        {renderChild(6, 3)}
+        {renderChild(6, 4)}
+        <Child>
+          <Text
+            fontSize={Theme.fontSizes.xxxlarge}
+            fontFamily={Theme.fonts.greek}
+            color={Theme.textColors.darkGrey}
+            textAlign="right"
+          >
+            K
+          </Text>
+        </Child>
+        {renderChild(7, 1)}
+        {renderChild(7, 2)}
+        {renderChild(7, 3)}
+        {renderChild(7, 4)}
+      </Grid>
+    </Flex>
   )
 }
