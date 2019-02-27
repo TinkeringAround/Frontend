@@ -49,10 +49,7 @@ export default props => {
           </Text>
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             {level.stages.map((stage, stageIndex) => {
-              const solved =
-                stage.puzzle.solution === achievements[levelIndex].forLevels[stageIndex]
-                  ? true
-                  : false
+              const solved = stage.solution === achievements[levelIndex].forLevels[stageIndex]
               const svg = icons.getSVG(stage.type)
 
               return (
@@ -88,7 +85,7 @@ export default props => {
                       onClick={() => {
                         setLoading(true)
                         setStage({
-                          stage: activity.game.levels[levelIndex].stages[stageIndex],
+                          data: activity.game.levels[levelIndex].stages[stageIndex],
                           levelIndex: levelIndex,
                           stageIndex: stageIndex,
                           solved: solved

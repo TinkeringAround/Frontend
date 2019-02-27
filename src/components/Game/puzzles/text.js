@@ -17,7 +17,7 @@ export default props => {
       fontSize={Theme.fontSizes.xxxxlarge}
       color={Theme.textColors.darkGrey}
     >
-      {stage.puzzle.task}
+      {stage.task}
     </Text>
   )
 }

@@ -4,12 +4,9 @@ const userData = {
   token:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6I…jMyfQ.mtPKiZ8wHsuAogJnlbzlnmimMw_BHYqRWk1JPpwez9M',
   email: 't.maier@gingco.net',
-  username: 'Thomas',
   password: '$2a$10$OOXyjzvKxrHCz1wADGQneuH8Mea6tsp.LVBwUAAeE0CKKuN.7EG.m',
   meta: {
-    createdAt: new Date(2019, 2, 15),
-    status: 'active',
-    code: '670373'
+    createdAt: new Date(2019, 2, 15)
   },
   activities: [
     {
@@ -28,80 +25,50 @@ const userData = {
           {
             stages: [
               {
-                title: 'Was ist die Antwort?',
-                comment: 'Das sollte ja kein Problem für dich sein.',
-                clue: '',
                 type: 'text',
-                puzzle: {
-                  task: 'Was ist rot, rund und gesund?',
-                  solution: 'Apfel',
-                  hint: ''
-                }
+                task: 'Was ist rot, rund und gesund?',
+                solution: 'Apfel',
+                hint: ''
               },
               {
-                title: 'Was ist die Antwort?',
-                comment: 'Das sollte ja kein Problem für dich sein.',
-                clue: '',
                 type: 'text',
-                puzzle: {
-                  task: 'Was ist rot, rund und gesund?',
-                  solution: 'Apfel',
-                  hint: ''
-                }
+                task: 'Was ist rot, rund und gesund?',
+                solution: 'Apfel',
+                hint: ''
               }
             ]
           },
           {
             stages: [
               {
-                title: 'Errätst du den Code?',
-                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
-                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
                 type: 'matrix',
-                puzzle: {
-                  task: '',
-                  solution: '11,24,33,52',
-                  hint: 'Unter dem Kühlschrank'
-                }
+                task: '',
+                solution: '11,24,33,52',
+                hint: 'Unter dem Kühlschrank'
               },
               {
-                title: 'Errätst du den Code?',
-                comment: 'Richtige Kombination führt zu einem neuer Hinweis.',
-                clue: 'Setze die richtigen Felder, dann bekommst du den nächsten Hinweis.',
                 type: 'matrix',
-                puzzle: {
-                  task: '',
-                  solution: '11,24,33,52',
-                  hint: 'Unter dem Kühlschrank'
-                }
+                task: '',
+                solution: '11,24,33,52',
+                hint: 'Unter dem Kühlschrank'
               }
             ]
           },
           {
             stages: [
               {
-                title: '...',
-                comment: '...',
-                clue: '...',
                 type: 'word',
-                puzzle: {
-                  task:
-                    'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                  solution: 'ABC',
-                  hint: 'Box im Arbeitszimmer'
-                }
+                task:
+                  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                solution: 'ABC',
+                hint: 'Box im Arbeitszimmer'
               },
               {
-                title: '...',
-                comment: '...',
-                clue: '...',
                 type: 'word',
-                puzzle: {
-                  task:
-                    'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                  solution: 'ABC',
-                  hint: 'Box im Arbeitszimmer'
-                }
+                task:
+                  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                solution: 'ABC',
+                hint: 'Box im Arbeitszimmer'
               }
             ]
           }

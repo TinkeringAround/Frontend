@@ -20,10 +20,10 @@ export default props => {
       fontSize={Theme.fontSizes.xxxlarge}
       color={Theme.textColors.darkGrey}
       letterSpacing="5px"
-      lineHeight="1.2"
+      lineHeight={Theme.lineHeight}
       overflowWrap="break-word"
     >
-      {stage.puzzle.task}
+      {stage.task}
     </Text>
   )
 }

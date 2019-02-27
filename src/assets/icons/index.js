@@ -4,7 +4,7 @@ const ViewBoxes = {
   Picture: '0 0 512 512',
   Audio: '0 0 576 512',
   Matrix: '0 0 448 512',
-  Scheibe: '0 0 512 512',
+  Circle: '0 0 512 512',
   Word: '0 0 512 512',
   Text: '0 0 384 512',
   Crown: '0 0 250 250',
@@ -25,7 +25,7 @@ const Paths = {
   Matrix: (
     <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM144.5 319c-35.1 0-63.5-28.4-63.5-63.5s28.4-63.5 63.5-63.5 63.5 28.4 63.5 63.5-28.4 63.5-63.5 63.5zm159 0c-35.1 0-63.5-28.4-63.5-63.5s28.4-63.5 63.5-63.5 63.5 28.4 63.5 63.5-28.4 63.5-63.5 63.5z" />
   ),
-  Scheibe: (
+  Circle: (
     <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z" />
   ),
   Word: (
@@ -74,9 +74,9 @@ const getSVG = type => {
       path = Paths.Matrix
       break
     }
-    case 'scheibe': {
-      viewBox = ViewBoxes.Scheibe
-      path = Paths.Scheibe
+    case 'circle': {
+      viewBox = ViewBoxes.Circle
+      path = Paths.Circle
       break
     }
     case 'word': {

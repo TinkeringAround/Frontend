@@ -25,12 +25,12 @@ export default props => {
   const { setActivity } = appContext
   const { activity } = props
 
-  const countPuzzles = activity => {
-    let puzzles = 0
+  const countStages = activity => {
+    let stages = 0
     activity.game.levels.forEach(level => {
-      puzzles = puzzles + level.stages.length
+      stages = stages + level.stages.length
     })
-    return puzzles
+    return stages
   }
 
   const calculateSolved = activity => {
@@ -44,7 +44,7 @@ export default props => {
     game.levels.forEach((level, index) => {
       level.stages.forEach((stage, stageIndex) => {
         total = total + 1
-        if (stage.puzzle.solution === achievements[index].forLevels[stageIndex]) solved = solved + 1
+        if (stage.solution === achievements[index].forLevels[stageIndex]) solved = solved + 1
       })
     })
 
@@ -128,7 +128,7 @@ export default props => {
                 fontSize={Theme.fontSizes.medium}
                 color={Theme.textColors.darkGrey}
               >
-                {countPuzzles(activity) + ' Rätsel'}
+                {countStages(activity) + ' Rätsel'}
               </Text>
             </Flex>
           </Flex>

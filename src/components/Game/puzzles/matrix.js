@@ -10,7 +10,7 @@ import Button from '../../atoms/Button'
 //--------------------------------------------------------------------------//
 export default props => {
   const { stage, solved, gameIsSolved } = props
-  const [splitSolutions] = useState(stage.puzzle.solution.split(','))
+  const [splitSolutions] = useState(stage.solution.split(','))
   const [playground, setPlayground] = useState(() => {
     let pg = []
     for (let row = 0; row <= 6; row++) {
@@ -154,6 +154,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           E
         </Text>
@@ -167,6 +168,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           F
         </Text>
@@ -180,6 +182,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           G
         </Text>
@@ -193,6 +196,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           H
         </Text>
@@ -206,6 +210,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           I
         </Text>
@@ -219,6 +224,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           J
         </Text>
@@ -232,6 +238,7 @@ export default props => {
           fontSize={Theme.fontSizes.xxxlarge}
           fontFamily={Theme.fonts.greek}
           color={Theme.textColors.darkGrey}
+          textAlign="right"
         >
           K
         </Text>

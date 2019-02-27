@@ -19,7 +19,7 @@ const theme = {
 
   borderRadius: '50px',
 
-  // Font
+  // Fonts
   fonts: {
     mono: 'Roboto Mono',
     default: 'Arial Rounded MT Bold',
@@ -29,9 +29,10 @@ const theme = {
   // Text Colors
   textColors: {
     white: '#FFF',
+    Green: '#4ABE5D',
+
     lightGrey: '#C4C4C4',
-    darkGrey: '#555',
-    darkGreen: '#4ABE5D'
+    darkGrey: '#555'
   },
 
   // Text sizes

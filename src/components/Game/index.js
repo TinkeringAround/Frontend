@@ -21,6 +21,7 @@ import Text from '../atoms/Text'
 import TextPuzzle from './puzzles/text'
 import MatrixPuzzle from './puzzles/matrix'
 import WordPuzzle from './puzzles/word'
+import CirclePuzzle from './puzzles/circle'
 
 //--------------------------------------------------------------------------//
 export default () => {
@@ -46,6 +47,8 @@ export default () => {
     setActivity(null)
   }
 
+  if (stage != null) console.log('Stage', stage)
+
   if (stage != null && stage.solved) {
     setTimeout(() => {
       gameIsSolved()
@@ -54,27 +57,33 @@ export default () => {
 
   const gameIsSolved = () => {
     setTextSolution(true)
-    setSolution(stage.stage.puzzle.solution)
+    setSolution(stage.data.solution)
     setPercentage(100)
     setShowHint(true)
   }
 
   let component = ''
   if (stage != null) {
-    switch (stage.stage.type) {
+    switch (stage.data.type) {
       case 'text': {
-        component = <TextPuzzle stage={stage.stage} />
+        component = <TextPuzzle stage={stage.data} />
         break
       }
       case 'matrix': {
         component = (
-          <MatrixPuzzle stage={stage.stage} solved={stage.solved} gameIsSolved={gameIsSolved} />
+          <MatrixPuzzle stage={stage.data} solved={stage.solved} gameIsSolved={gameIsSolved} />
         )
         if (textSolution) setTextSolution(false)
         break
       }
       case 'word': {
-        component = <WordPuzzle stage={stage.stage} />
+        component = <WordPuzzle stage={stage.data} />
+        break
+      }
+      case 'circle': {
+        component = (
+          <CirclePuzzle stage={stage.data} solved={stage.solved} gameIsSolved={gameIsSolved} />
+        )
         break
       }
       default: {
@@ -167,9 +176,9 @@ export default () => {
                   fontSize={Theme.fontSizes.xxlarge}
                   zIndex="2"
                   onClick={() => {
-                    if (solution === stage.stage.puzzle.solution && percentage !== 100) {
+                    if (solution === stage.data.solution && percentage !== 100) {
                       gameIsSolved()
-                    } else if (solution === stage.stage.puzzle.solution && percentage === 100) {
+                    } else if (solution === stage.data.solution && percentage === 100) {
                       saveAndExit()
                     } else {
                       setError(true)
@@ -201,25 +210,23 @@ export default () => {
                     alignItems="center"
                   >
                     <Text
-                      margin={stage.stage.puzzle.hint !== '' ? '10px auto 5px auto' : '0'}
-                      color={Theme.textColors.darkGreen}
+                      margin={stage.data.hint !== '' ? '10px auto 5px auto' : '0'}
+                      color={Theme.textColors.Green}
                       fontSize={
-                        stage.stage.puzzle.hint !== ''
-                          ? Theme.fontSizes.normal
-                          : Theme.fontSizes.xlarge
+                        stage.data.hint !== '' ? Theme.fontSizes.normal : Theme.fontSizes.xlarge
                       }
                     >
-                      {stage.stage.puzzle.hint !== ''
+                      {stage.data.hint !== ''
                         ? 'Der nächste Hinweis:'
                         : 'Toll, das Rätsel ist gelöst!'}
                     </Text>
-                    {stage.stage.puzzle.hint !== '' ? (
+                    {stage.data.hint !== '' ? (
                       <Text
                         margin="0 auto"
-                        color={Theme.textColors.darkGreen}
+                        color={Theme.textColors.Green}
                         fontSize={Theme.fontSizes.xlarge}
                       >
-                        {stage.stage.puzzle.hint}
+                        {stage.data.hint}
                       </Text>
                     ) : (
                       <React.Fragment />
