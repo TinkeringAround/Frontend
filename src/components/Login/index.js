@@ -15,9 +15,6 @@ import Box from '../atoms/Box'
 import Button from '../atoms/Button'
 import Textfield from '../atoms/Textfield'
 
-// Components
-import Logo from './Logo'
-
 //--------------------------------------------------------------------------//
 export default () => {
   const appContext = useContext(AppContext)
@@ -33,6 +30,9 @@ export default () => {
   }
 
   const login = () => {
+    // show loading animation
+
+    // perform login
     axios
       .post('http://157.230.76.219:30000/api/v1/users/login', {
         email: email,
@@ -43,14 +43,13 @@ export default () => {
         appContext.login(response.data.data)
       })
       .catch(function(error) {
+        // show error animation
         console.log(error)
       })
   }
 
   return (
     <React.Fragment>
-      <Logo />
-
       <Container position="absolute" width="100%" height="45%" bottom="0px">
         <Flex justifyContent="flex-start" flexDirection="column">
           <Text
