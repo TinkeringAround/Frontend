@@ -106,7 +106,11 @@ export default () => {
       ) : stage != null ? (
         <React.Fragment>
           {showHelp && !showHint && percentage !== 100 ? (
-            <Modal helpText={stage.data.help} setShowHelp={setShowHelp} />
+            <Modal
+              helpText={stage.data.help}
+              setShowHelp={setShowHelp}
+              show={showHelp && !showHint && percentage !== 100}
+            />
           ) : (
             <React.Fragment />
           )}
