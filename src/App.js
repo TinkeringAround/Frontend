@@ -46,7 +46,7 @@ const App = () => {
   }
 
   const login = data => {
-    Cookie.save('user', data, { path: '/' })
+    //Cookie.save('user', data, { path: '/' })
     setUser(mock)
   }
 

@@ -31,9 +31,10 @@ export default () => {
 
   const login = () => {
     // show loading animation
+    appContext.login(null)
 
     // perform login
-    axios
+    /*axios
       .post('http://157.230.76.219:30000/api/v1/users/login', {
         email: email,
         password: password
@@ -45,7 +46,7 @@ export default () => {
       .catch(function(error) {
         // show error animation
         console.log(error)
-      })
+      })*/
   }
 
   return (
